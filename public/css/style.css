@@ -1,0 +1,65 @@
+.middle {
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.navbar {
+    height: 60px;
+    padding: 0 10px;
+    border-bottom:solid 1px rgb(226, 226, 226);
+}
+
+/* Style all font awesome icons */
+.login-menu .fa {
+    padding: 30px;
+    font-size: 30px;
+    width: 90px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.login-menu .fa:hover {
+    color: white;
+    opacity: 0.85;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+    background: #4267b2;
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    background: #1da1f2;
+    color: white;
+}
+
+.fa-github {
+    background: #767676;
+    color: white;
+}
+
+.fa-google {
+    background:  #d34836;
+    color: white;
+}
+
+
+.login-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.login-menu div{
+    padding: 20px 20px;
+}
