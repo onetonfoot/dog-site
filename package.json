@@ -1,14 +1,15 @@
 {
-  "name": "passport_login",
+  "name": "",
   "version": "1.0.0",
-  "description": "Course files for The Net Ninja OAuth playlist on YouTube",
+  "description": "A mock website for renting dogs",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Dominic Morgan",
+  "author": "Dom, Justin and Shawn",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.5.7",
     "express": "^4.16.1",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
