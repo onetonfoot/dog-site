@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerDogModal" data-whatever="@mdo">Register a dog</button>
+
+        <div class="modal fade" id="registerDogModal" tabindex="-1" role="dialog" aria-labelledby="registerDogModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Register a dog</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                    </div>
+
+                    <form id="dog_form" action="/dog/registration" method="post" enctype="multipart/form-data">
+                        <div id="form_1">
+                            <div class="form-group">
+                                <label for="InputName">Name</label>
+                                <input type="text" id="dog_name" class="form-control" placeholder="Name of your dog"required>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputBreed">Breed</label>
+                                <input type="text" id="dog_breed" class="form-control" placeholder="breed of your dog" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputSex">Sex</label>
+                                <select type="age" id="dog_sex"class="form-control" required>
+                                    <option></option>
+                                    <option>M</option>
+                                    <option>F</option>
+                                </select>
+                            </div>
+                            <button id="next_1" class = "button btn btn-primary" type="button">Next</button>
+                        </div>
+                        
+                        <div id="form_2">
+                            <div class="form-group">
+                                <label for="InputAge">Age</label>
+                                <select type="age" id="dog_age"class="form-control" required>
+                                <option></option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputSize">Size</label>
+                                <select type="age" id="dog_size" class="form-control" required>
+                                    <option></option>
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+        
+                        
+        
+                        <button id="next_2" class = "button btn btn-primary" type="button">Next</button>
+        
+                        <div class="form-group">
+                          <label for="UploadPhoto">Upload photos</label>
+                          <input id="dog_photos" type="file" name="pic" accept="image/*">                       </div>
+                       
+                    
+                        <button type="submit"  id="submit_dog" class=" button btn btn-primary">Submit</button>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Next</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+<script>
+    var $dog_name = $('#dog_name');
+    var $dog_breed = $('#dog_breed');
+    var $dog_sex = $('#dog_sex');
+    var $dog_age = $('#dog_age');
+    var $dog_size = $('#dog_size');
+    var $dog_form = $('#dog_form')
+
+    $(document).ready(function () {
+        
+        $('#next_1').click(()=> {
+            $('.progress-bar').attr({
+                "aria-valuenow": 33.33,
+                "style": "width: 33.33%"
+            })
+        })
+
+        $('#next_2').click(()=> {
+            $('.progress-bar').attr({
+                "aria-valuenow": 66.66,
+                "style": "width: 66.66%"
+            })
+        })
+
+        $('#dog_photos').on('change', ()=> {
+            $('.progress-bar').attr({
+                "aria-valuenow": 100,
+                "style": "width: 100%"
+            })
+        })
+        
+
+        $('#dog_form').submit(event => {
+            console.log(new FormData(this))
+            event.preventDefault();
+
+            // let dog_form = $(this).serialize()
+            var dog_form = {
+                'name':$dog_name.val(),
+                'breed':$dog_breed.val(),
+                'sex':$dog_sex.val(),
+                'age':$dog_age.val(),
+                'size':$dog_size.val()
+            };
+
+            console.log(dog_form);
+
+            $.ajax({
+                type:"POST",
+                url:'http://localhost:8080/dog/registration',
+                data: new FormData(this),
+                //contentType: 'application/json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success:function(data){
+                    console.log("success");
+                    console.log(data);
+                },
+                error: function(data){
+                    console.log("error");
+                    console.log(data);
+            
+                }
+            });
+        });
+    });
+</script>
+</html>
