@@ -8,9 +8,11 @@ const dogSchema = new Schema({
     age: Number,
     size: String,
     description: String,
+    reviews: Array,
+    rating: Number,
     photos: Array,
+    bookings: Array,
     ownerID: String,
-    ownerName:String,
 });
 
 let Dog = module.exports = mongoose.model('dog', dogSchema);

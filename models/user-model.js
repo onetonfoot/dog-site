@@ -3,8 +3,13 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     username: String,
-    userID: String,
+    ownerID: String,
     email: String,
+    photos: Array,
+    description:String,
+    rating: Number,
+    reviews: Array,
+    dogIDs: Array
 });
 
 let User = module.exports = mongoose.model('user', userSchema);
