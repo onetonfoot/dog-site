@@ -1,42 +1,88 @@
-.middle {
-    height: calc(100vh - 100px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
+/* navvar */
 
 .navbar {
     height: 60px;
-    padding: 0 10px;
-    border-bottom:solid 1px rgb(226, 226, 226);
 }
 
-/* Style all font awesome icons */
-.login-menu .fa {
-    padding: 30px;
-    font-size: 30px;
-    width: 90px;
-    text-align: center;
-    text-decoration: none;
+.nav-item:hover {
+    border-bottom: solid 2px black;
 }
 
-/* Add a hover effect if you want */
-.login-menu .fa:hover {
-    color: white;
-    opacity: 0.85;
+
+/* Filter Bar */
+
+.filter-bar {
+    height: 60px;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 15px;
 }
 
-/* Set a specific color for each brand */
+#form-menu {
+    padding: 10px;
+    min-height: 400px;
+}
+
+.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.unselectable:active {
+    background-color: white;
+}
+
+.unselectable:hover {
+    background-color: white;
+}
+
+.slider-container {
+    width: 300px;
+    padding: 10px;
+}
+
+.popover {
+    max-width: 100%;
+    /* Max Width of the popover (depending on the container!) */
+}
+
+.filter-btn {
+    margin: 0 10px;
+}
+
+.hide {
+    display: none;
+}
+
+
+/* Remove arrow on drop down */
+
+.dropdown-toggle::after {
+    display: none
+}
+
+
+/* Container */
+
+.container {
+    max-width: 98vw;
+}
+
 
 /* Facebook */
+
 .fa-facebook {
     background: #4267b2;
     color: white;
 }
 
+
 /* Twitter */
+
 .fa-twitter {
     background: #1da1f2;
     color: white;
@@ -48,18 +94,20 @@
 }
 
 .fa-google {
-    background:  #d34836;
+    background: #d34836;
     color: white;
 }
 
-
-.login-menu{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+.dog-row {
+    justify-content: space-around
 }
 
-.login-menu div{
-    padding: 20px 20px;
+.card-deck {
+    margin: 15px;
 }
+
+.dog-card {
+    min-width: 300px;
+    margin: 15px;
+}
+

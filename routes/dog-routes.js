@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
+const multer = require('multer');
 const Dog = require('../models/dog-model');
 const path = require('path');
 const fileUpload = require('express-fileupload');
@@ -25,21 +26,28 @@ router.get('/mydog', (req, res) => {
     })
 })
 
+
+router.get('/reg',(req,res)=>{
+
+    res.render('form')
+})
+
 // Post a dog registration
 router.post('/registration', (req, res) => {
-    console.log(req.body)
-    console.log(req.files)
-    Dog.create({
-        name: req.body.name,
-        breed: req.body.breed,
-        sex: req.body.sex,
-        age: req.body.age,
-        size: req.body.size,
-        description: req.body.description,
-        photos: req.body.photos,
-        ownerID: req.body.ownerID // For postman testing only, for real case use the code below
-        //ownerID: req.session.passport.user
-    });
+    // console.log(req.body)
+    let data = req.body
+    console.log(data)
+    // Dog.create({
+    //     name: req.body.name,
+    //     breed: req.body.breed,
+    //     sex: req.body.sex,
+    //     age: req.body.age,
+    //     size: req.body.size,
+    //     description: req.body.description,
+    //     photos: req.body.photos,
+    //     ownerID: req.body.ownerID // For postman testing only, for real case use the code below
+    //     //ownerID: req.session.passport.user
+    // });
     res.send('New dog registered');
 });
 
