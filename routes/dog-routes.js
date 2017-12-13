@@ -1,18 +1,34 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
-const Dog = require('../models/dog-model')
+const Dog = require('../models/dog-model');
+const path = require('path');
+const fileUpload = require('express-fileupload');
 
-router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(fileUpload());
 
-// Get the view of all dogs
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public', 'form.html'))
+})
+
+// Get the view of all dogs for 
 router.get('/view/:segment', (req, res) => {
     Dog.find({}, {__v: 0}).limit(9).skip(req.params.segment*9).then(dogs => {
         res.json(dogs);
     });
 });
 
+// Get my dogs only
+router.get('/mydog', (req, res) => {
+    Dog.find({ownerID: req.session.passport.user}).then(dogs => {
+        res.json(dogs);
+    })
+})
+
 // Post a dog registration
 router.post('/registration', (req, res) => {
+    console.log(req.body)
+    console.log(req.files)
     Dog.create({
         name: req.body.name,
         breed: req.body.breed,
