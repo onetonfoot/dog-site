@@ -1,8 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars')
 const passport = require('passport');
-const authRoutes = require('./routes/auth-routes');
-const indexRoutes = require('./routes/index-routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -34,8 +32,15 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 });
 
 // set up routes
+const authRoutes = require('./routes/auth-routes');
+const indexRoutes = require('./routes/index-routes');
+const dogRoutes = require('./routes/dog-routes');
+const userRoutes = require('./routes/user-routes');
+
 app.use('/auth', authRoutes);
 app.use('/',indexRoutes);
+app.use('/dog', dogRoutes);
+app.use('/user', userRoutes);
 
 app.listen(8080, () => {
     console.log('app now listening for requests on port 8080');
