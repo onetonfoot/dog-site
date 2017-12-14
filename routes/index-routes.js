@@ -8,10 +8,16 @@ const authCheck = (req, res, next) => {
     }
 };
 
+
 router.get('/', (req, res) => {
 
-
-    res.render('home');
+    res.render('home',{loggedIn:req.isAuthenticated()});
 });
+
+router.get('/profile',(req,res)=>{
+
+    res.render('profile')
+
+})
 
 module.exports = router;
