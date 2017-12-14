@@ -35,18 +35,12 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 const authRoutes = require('./routes/auth-routes');
 const indexRoutes = require('./routes/index-routes');
 const dogRoutes = require('./routes/dog-routes');
-<<<<<<< HEAD
-app.use('/auth', authRoutes);
-app.use('/',indexRoutes);
-app.use('/dog',dogRoutes);
-=======
 const userRoutes = require('./routes/user-routes');
 
 app.use('/auth', authRoutes);
 app.use('/',indexRoutes);
 app.use('/dog', dogRoutes);
 app.use('/user', userRoutes);
->>>>>>> cce0286633a070989705dbd46f4350d1c3d73a7f
 
 app.listen(8080, () => {
     console.log('app now listening for requests on port 8080');

@@ -16,7 +16,7 @@
     width: 100vw;
     display: flex;
     flex-direction: row;
-    padding: 10px 15px;
+    padding: 10px 30px;
 }
 
 #form-menu {
@@ -52,6 +52,10 @@
 
 .filter-btn {
     margin: 0 10px;
+}
+
+.filter-btn:first-child {
+    margin-left: 0;
 }
 
 .hide {
@@ -107,7 +111,6 @@
 }
 
 .dog-card {
-    min-width: 300px;
-    margin: 15px;
+    margin: 15px 0 !important;
 }
 
