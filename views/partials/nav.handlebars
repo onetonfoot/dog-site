@@ -4,11 +4,47 @@
   </button>
   <a class="navbar-brand" href="#">Navbar</a>
 
+
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    {{#if loggedIn}}
       <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" href="/profile">Profile</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/auth/logout" >Logout</a>
+      </li>
+    {{else}}
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+      </li>
+    {{/if}}
     </ul>
+
   </div>
 </nav>
+
+{{!-- Login modal --}}
+<div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="social-modal modal-header">
+      </div>
+      <div class="modal-body">
+          <div class="login-container">
+            <div>
+              <a href="/auth/facebook" class="mr-auto social fa-3x fa fa-facebook"></a>
+            </div>
+            <div>
+              <a href="/auth/google" class="social fa fa-3x fa-google"></a>
+            </div>
+            <div>
+              <a href="/auth/twitter" class="social fa fa-3x fa-twitter"></a>
+            </div>
+        </div>
+      </div>
+      <div class="social-modal modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

@@ -73,11 +73,22 @@
 /* Container */
 
 .container {
-    max-width: 98vw;
+    margin: 0 auto;
+    /* max-width: 98vw; */
+}
+
+.card-deck {
+    margin: 0 !important;
 }
 
 
 /* Facebook */
+
+.login-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 
 .fa-facebook {
     background: #4267b2;
@@ -86,6 +97,31 @@
 
 
 /* Twitter */
+
+.modal.show .modal-dialog {
+    -webkit-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    top: 50%;
+    margin: 0 auto;
+}
+
+.social-modal {
+    border: 0;
+}
+
+.social {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 8px;
+}
+
+.social:hover {
+    color: white;
+    text-decoration: none;
+}
 
 .fa-twitter {
     background: #1da1f2;
@@ -114,3 +150,42 @@
     margin: 15px 0 !important;
 }
 
+
+/* Profile page */
+
+.rating {
+    text-align: center;
+    padding: 5px;
+}
+
+.rating .checked {
+    color: rgb(232, 232, 0);
+}
+
+.row-padding {
+    padding-top: 60px;
+}
+
+
+.profile-container {
+    margin: auto;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-container {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+.profile-img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+}

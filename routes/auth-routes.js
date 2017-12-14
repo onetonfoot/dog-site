@@ -14,7 +14,7 @@ router.get('/logout', (req, res) => {
     req.session.destroy( (err) => {
         console.log("logouted")
         if (err){console.log(err)}
-        res.redirect('/auth/login'); //Inside a callback… bulletproof!
+        res.redirect('/'); //Inside a callback… bulletproof!
     })
 });
 
