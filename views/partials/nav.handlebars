@@ -16,7 +16,7 @@
       </li>
     {{else}}
       <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+        <a id="login-btn"class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
       </li>
     {{/if}}
     </ul>
@@ -29,6 +29,10 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="social-modal modal-header">
+        {{#if login_prompt}}
+        {{login_prompt}}
+        <h1>jsdkfh</h1>
+        {{/if}}
       </div>
       <div class="modal-body">
           <div class="login-container">

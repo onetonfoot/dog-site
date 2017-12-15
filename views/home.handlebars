@@ -168,3 +168,19 @@
         </div>
     </div>
 </div>
+
+{{#if messages}}
+
+    <script>
+
+        $(function(){
+            console.log('happy')
+            $("#login-btn").trigger("click",function(){
+                console.log("fish")
+            })
+        })
+    </script>
+<h1>{{messages}}</h1>
+
+
+{{/if}}

@@ -197,11 +197,6 @@
     color: rgb(232, 232, 0);
 }
 
-.row-padding {
-    padding-top: 60px;
-}
-
-
 .profile-container {
     margin: auto;
     border-radius: 50%;
@@ -236,3 +231,9 @@
     bottom: 0;
 }
 
+.chatbox { 
+    height: 63vh; 
+    border: 1px solid rgba(0,0,0,.125); 
+    margin-bottom: 15px; 
+    border-radius: 5px; 
+} 

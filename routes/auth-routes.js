@@ -59,4 +59,17 @@ router.get('/github/redirect', passport.authenticate('github'), (req, res) => {
 });
 
 
+
+router.authCheck = (req, res, next) => {
+    if(req.isAuthenticated()){
+        next();
+    } else {
+
+        req.flash('info', 'Flash is back!')
+        res.redirect('/');
+    }
+};
+
+
 module.exports = router;
+

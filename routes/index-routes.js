@@ -1,17 +1,10 @@
 const router = require('express').Router();
 
-const authCheck = (req, res, next) => {
-    if(req.isAuthenticated()){
-        next();
-    } else {
-        res.redirect('/auth/login');
-    }
-};
 
 
 router.get('/', (req, res) => {
-
-    res.render('home',{loggedIn:req.isAuthenticated()});
+// loggedIn: req.isAuthenticated(),
+    res.render('home',{  messages: req.flash('info') });
 });
 
 router.get('/profile',(req,res)=>{
