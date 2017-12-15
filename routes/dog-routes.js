@@ -5,7 +5,7 @@ const Dog = require('../models/dog-model');
 const path = require('path');
 const fileUpload = require('express-fileupload');
 
-router.use(bodyParser.urlencoded({ extended: false }));
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 router.use(fileUpload());
 
 router.get('/', (req, res) => {
@@ -33,10 +33,14 @@ router.get('/reg',(req,res)=>{
 })
 
 // Post a dog registration
-router.post('/registration', (req, res) => {
+router.post('/registration' , function(req, res) {
     // console.log(req.body)
     let data = req.body
-    console.log(data)
+    console.log(data); //fsdfsd
+
+    // console.log(req.files.dog_photos); //slash.png
+    console.log(req.files.dog_photos); //89 50 4e ...
+
     // Dog.create({
     //     name: req.body.name,
     //     breed: req.body.breed,
@@ -47,9 +51,9 @@ router.post('/registration', (req, res) => {
     //     photos: req.body.photos,
     //     ownerID: req.body.ownerID // For postman testing only, for real case use the code below
     //     //ownerID: req.session.passport.user
-    // });
-    res.send('New dog registered');
-});
+    
+    res.send('New dog registered')}
+);
 
 // Delete a dog registration
 router.delete('/registration/:dogID', (req, res) => {
