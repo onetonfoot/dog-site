@@ -224,3 +224,15 @@
     transform: translateX(-50%);
     height: 100%;
 }
+
+.dog-icon {
+    height: 2em;
+    fill: #AAA;
+    vertical-align: middle;
+}
+
+.stat {
+    position: absolute;
+    bottom: 0;
+}
+
