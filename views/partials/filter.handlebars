@@ -78,9 +78,14 @@
         });
 
         $('input[name="datepicker"]').daterangepicker({
-            "autoApply": true,
-            "alwaysShowCalendars": true
+            "autoApply": true
         });
+
+        $('.daterangepicker').click(()=>{
+            $('.daterangepicker').css({
+                display: block
+            })
+        })
 
     });
 </script>

@@ -9,6 +9,7 @@
   "author": "Dom, Justin and Shawn",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "ejs": "^2.5.7",
     "express": "^4.16.1",
     "express-fileupload": "^0.3.0",
@@ -21,6 +22,7 @@
     "passport-facebook": "^2.1.1",
     "passport-github": "^1.1.0",
     "passport-google-oauth20": "^1.0.0",
-    "passport-twitter": "^1.0.4"
+    "passport-twitter": "^1.0.4",
+    "socket.io": "^2.0.4"
   }
 }

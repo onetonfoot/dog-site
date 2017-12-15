@@ -151,13 +151,13 @@
     margin: 15px 0 !important;
 }
 
-.carousel-item {
+.dog-card .carousel-item {
     position: absolute;
     top: 0;
     height: 100%;
 }
 
-.carousel-item img {
+.dog-card .carousel-item img {
     position: relative;
     height: 100%;
     margin: auto;
@@ -165,23 +165,23 @@
     transform: translateX(-50%)
 }
 
-.carousel-inner {
+.dog-card .carousel-inner {
     position: relative;
     width: 100%;
     padding-top: 75%;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
+.dog-card .carousel-control-prev,
+.dog-card .carousel-control-next {
     opacity: 0;
 }
 
-.carousel-control-prev:hover {
+.dog-card .carousel-control-prev:hover {
     opacity: 1;
     background: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.4))
 }
 
-.carousel-control-next:hover {
+.dog-card .carousel-control-next:hover {
     opacity: 1;
     background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.4))
 }
@@ -237,3 +237,73 @@
     margin-bottom: 15px; 
     border-radius: 5px; 
 } 
+
+.review-pic-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-pic {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+}
+
+.review-table td{
+    padding: 10px 30px 0 0;
+}
+
+.review-table h5 {
+    margin-bottom: 0;
+}
+
+.review-table tr {
+    border-bottom: 0.5px solid #CCC;
+}
+
+.review-table tr:last-child {
+    border-bottom: none;
+}
+
+.review-more-num,
+.review-more-prev,
+.review-more-next {
+    background: none;
+    border: 1px solid #CCC;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.review-more-num:hover,
+.review-more-prev:hover,
+.review-more-next:hover {
+    background: #CCC;
+}
+
+.review-more-num:focus,
+.review-more-prev:focus,
+.review-more-next:focus {
+    outline: none;
+}
+
+.review-more-num + span {
+    margin-right: 5px;
+}
+
+.reviewCarousel .carousel-indicators-number li{
+    text-indent: 0;
+    background: none;
+    border: 1px solid #CCC;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px !important;
+    margin-right: 5px;
+    vertical-align: middle;
+}
