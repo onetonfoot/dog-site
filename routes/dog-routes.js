@@ -41,19 +41,19 @@ router.post('/registration' , function(req, res) {
     // console.log(req.files.dog_photos); //slash.png
     console.log(req.files.dog_photos); //89 50 4e ...
 
-    // Dog.create({
-    //     name: req.body.name,
-    //     breed: req.body.breed,
-    //     sex: req.body.sex,
-    //     age: req.body.age,
-    //     size: req.body.size,
-    //     description: req.body.description,
-    //     photos: req.body.photos,
-    //     ownerID: req.body.ownerID // For postman testing only, for real case use the code below
-    //     //ownerID: req.session.passport.user
-    
-    res.send('New dog registered')}
-);
+    Dog.create({
+        name: req.body.dog_name,
+        breed: req.body.dog_breed,
+        sex: req.body.dog_sex,
+        age: req.body.dog_age,
+        size: req.body.dog_size,
+        description: req.body.dog_des,
+        photos: req.files.dog_photos,
+        ownerID: req.session.passport.user
+    }).then(()=>{
+        res.send('New dog registered')
+    })
+});
 
 // Delete a dog registration
 router.delete('/registration/:dogID', (req, res) => {
