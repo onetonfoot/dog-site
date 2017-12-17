@@ -88,6 +88,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    min-width: 300px;
 }
 
 .fa-facebook {
@@ -98,11 +99,32 @@
 
 /* Twitter */
 
-.modal.show .modal-dialog {
+/* .modal.show .modal-dialog {
     -webkit-transform: translate(0, -50%);
     -o-transform: translate(0, -50%);
     transform: translate(0, -50%);
     top: 50%;
+    margin: 0 auto;
+} */
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+  
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
     margin: 0 auto;
 }
 
@@ -222,13 +244,27 @@
 
 .dog-icon {
     height: 2em;
-    fill: #AAA;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .stat {
-    position: absolute;
-    bottom: 0;
+    font-weight: 500;
+}
+
+.stat a[href^="#"] {
+    color: inherit;
+}
+
+.fa-pencil,
+.fa-plus {
+    color: #AAA;
+    cursor: pointer;
+}
+
+.fa-pencil:hover,
+.fa-plus:hover {
+    color: orange;
 }
 
 .chatbox { 
@@ -269,22 +305,40 @@
     border-bottom: none;
 }
 
+#reviewCarousel {
+    position: relative;
+}
+
 .review-more-num,
 .review-more-prev,
 .review-more-next {
+    font-weight: 700;
+    color: #666;
     background: none;
     border: 1px solid #CCC;
     border-radius: 50%;
     width: 30px;
     height: 30px;
     margin-right: 5px;
+    display: inline-block;
+    text-align: center;
+    /* bottom: 0px;
+    position: absolute; */
+}
+
+.fa-chevron-left,
+.fa-chevron-right {
     vertical-align: middle;
 }
 
 .review-more-num:hover,
 .review-more-prev:hover,
-.review-more-next:hover {
-    background: #CCC;
+.review-more-next:hover,
+.review-more-current {
+    background: #AAA;
+    border-color: #AAA;
+    color: #FFF;
+    text-decoration: none;
 }
 
 .review-more-num:focus,
@@ -306,4 +360,8 @@
     height: 30px !important;
     margin-right: 5px;
     vertical-align: middle;
+}
+
+#profileModal .modal-dialog {
+    width: 80%;
 }

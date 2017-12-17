@@ -16,40 +16,27 @@
         </div>
         <div class="col-sm-8 mb-5 pb-5">
             <div>
-                <h1>Name</h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque maiores laborum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem numquam, porro cumque eligendi sequi provident esse officia saepe recusandae
-                    deleniti voluptatum, architecto dignissimos </p>
-                <p>
+                <h1>Name
+                    <i class="fa fa-pencil" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>
+                </h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. In, molestiae! Reprehenderit aperiam vero magni
+                    facilis fugit temporibus, eaque maiores laborum? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quis exercitationem numquam, porro cumque eligendi sequi provident esse officia saepe recusandae deleniti
+                    voluptatum, architecto dignissimos </p>
+                <p class="stat mt-4">
                     <span>3 &#160;</span>
-                    <svg class="dog-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 374.44 250.37"><path d="M371,151a41.44,41.44,0,0,0-4.49-.2c-14.09.22-27.75-2.34-40-9.26-12.84-7.28-25-15.74-37.32-23.95-14.32-9.55-29.33-17.73-47-17.27-20.29.53-40.59,2-60.82,3.73-22.25,2-44.42,4.41-66.7.35-24-4.38-35.29-14.64-40.5-35.11C76.53,59.94,80.66,57,92.07,55c7-1.24,14.12-2.33,21.17-3.54,6.24-1.08,10.4-4.74,13.22-10.34,1.7-3.39,3.9-6.53,5.88-9.78v-3c-5.9-2-11.72-4.3-17.73-5.9-6.73-1.79-13.75-2.52-20.42-4.49C89,16.39,83.84,14.05,81.37,8.4A6.49,6.49,0,0,0,78.92,6C65.2-3.06,39.11-1.65,26.45,8.8c-5.37,4.43-7.33,10.51-8.33,17.08-1.61,10.52-33.46,55-8.79,59.45,28,5,5.45-12.23,6-9,.36,2.13-1.4,10.78-1.1,12.92,1.82,13.28-2,25.72-5.57,38.24-5.54,19.33-4.06,37.15,11.07,52.3,8.14,8.15,16,16.53,26.44,21.79,8.27,4.18,6.78,11.21,5.9,18.17-.67,5.32-5.61,3.58-8.6,5.06-1,.51-2.21.79-3.18,1.4-3.17,2-4.15,5.22-2.7,8.22a8.81,8.81,0,0,0,5.76,4.1,60.42,60.42,0,0,0,12.95.38c6.55-.34,7.47-1.59,8.28-8.11,1.07-8.53,2.4-17,3.57-25.25,7.77-1.55,7.76-1.55,10.22,5.18.4,1.09.88,2.16,1.26,3.26,2.63,7.64,1.91,9.92-4.92,14.08-3.85,2.34-4.09,5.68-3.42,9.55s3.67,4.54,6.72,4.6a76.49,76.49,0,0,0,8.88-.83c5-.5,6.4-3.53,6.74-8.19.84-11.58,2.14-23.12,3.23-34.45,11.18-3,22.35-5.72,33.32-9.05,21.31-6.47,42.1-14.7,64.8-15.83,12-.6,22.32,1.67,31.37,9.81,7,6.3,15,11,24.43,13,1.2.26,3,2.83,2.76,3.94-1.71,7.72-5.57,13.62-13.84,16.1-2.7.81-5.11,3.41-7.07,5.69-2.12,2.47-1.84,5.14,1.91,5.93,4.35.92,8.76,1.63,13.18,2.13,3.66.42,6.36-1.27,8.14-4.58,4.53-8.42,9.85-16.07,18.25-21.32,4.12-2.57,5.65-2.89,8.2,1.43,4.62,7.83,3.95,16.32,2.44,24.78-.2,1.1-1.48,2.16-2.5,2.93-2.77,2.08-6.64,11-4.64,12.92,2.2,2.11,6,2.56,9.15,3.66a6.29,6.29,0,0,0,2,0c10.67,0,13.23-2.76,11.54-13.34s-2.19-21.37,1.64-31.56c2.71-7.21.41-11.77-5.29-15.67-4.85-3.32-7.14-8.09-8.07-13.79-2.25-13.83-4.67-27.64-6.94-41,5.11,3,11.06,6.56,17.15,9.92,21.37,11.76,43.93,16.07,68,10.38,2.23-.53,4.31-1.72,7.73-3.12A24.31,24.31,0,0,0,371,151Z"/></svg>
-                    <span>&ensp; 10 Reviews</span>
+                    <a href="#dogs">
+                        <img class="dog-icon" src="/img/dog_icon.svg" alt="dog_icon">
+                    </a>
+                    <span>&ensp; 10
+                        <a href="#reviewCarousel">Reviews</a>
+                    </span>
                 </p>
             </div>
 
             <div class="mt-5">
                 <h1>Reviews</h1>
-                
-                {{!-- <div class="mt-2">
-                    <button type="button" class="review-more-prev">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="review-more-num">1</button>
-                    <button type="button" class="review-more-num">2</button>
-                    <button type="button" class="review-more-num">3</button>
-                    <span>...</span>
-                    <button type="button" class="review-more-num">13</button>
-                    <button type="button" class="review-more-next">
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </button>
-                </div> --}}
-
                 <div id="reviewCarousel" class="carousel slide" data-interval="false" data-wrap="false">
-                    <ol class="carousel-indicators carousel-indicators-number">
-                        <li data-target="#reviewCarousel" data-slide-to="0" class="active">1</li>
-                        <li data-target="#reviewCarousel" data-slide-to="1">2</li>
-                        <li data-target="#reviewCarousel" data-slide-to="2">3</li>
-                        <li data-target="#reviewCarousel" data-slide-to="3">4</li>
-                    </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <table class="review-table mt-3">
@@ -63,7 +50,7 @@
                                             </div>
                                         </td>
                                         <td valign="top">
-                                            <h5>Name</h5>
+                                            <h5>Name1</h5>
                                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                                         </td>
                                     </tr>
@@ -77,7 +64,8 @@
                                         </td>
                                         <td valign="top">
                                             <h5>Name</h5>
-                                            <p>In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque maiores laborum?</p>
+                                            <p>In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque
+                                                maiores laborum?</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -90,7 +78,8 @@
                                         </td>
                                         <td valign="top">
                                             <h5>Name</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem numquam, porro cumque eligendi sequi provident esse officia saepe recusandae</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem
+                                                numquam, porro cumque eligendi sequi provident esse officia saepe recusandae</p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -108,7 +97,7 @@
                                             </div>
                                         </td>
                                         <td valign="top">
-                                            <h5>Name</h5>
+                                            <h5>Name2</h5>
                                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                                         </td>
                                     </tr>
@@ -122,7 +111,8 @@
                                         </td>
                                         <td valign="top">
                                             <h5>Name</h5>
-                                            <p>In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque maiores laborum?</p>
+                                            <p>In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque
+                                                maiores laborum?</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -135,7 +125,8 @@
                                         </td>
                                         <td valign="top">
                                             <h5>Name</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem numquam, porro cumque eligendi sequi provident esse officia saepe recusandae</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem
+                                                numquam, porro cumque eligendi sequi provident esse officia saepe recusandae</p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -153,7 +144,7 @@
                                             </div>
                                         </td>
                                         <td valign="top">
-                                            <h5>Name</h5>
+                                            <h5>Name3</h5>
                                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                                         </td>
                                     </tr>
@@ -167,7 +158,8 @@
                                         </td>
                                         <td valign="top">
                                             <h5>Name</h5>
-                                            <p>In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque maiores laborum?</p>
+                                            <p>In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque
+                                                maiores laborum?</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -180,7 +172,8 @@
                                         </td>
                                         <td valign="top">
                                             <h5>Name</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem numquam, porro cumque eligendi sequi provident esse officia saepe recusandae</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem
+                                                numquam, porro cumque eligendi sequi provident esse officia saepe recusandae</p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -198,7 +191,7 @@
                                             </div>
                                         </td>
                                         <td valign="top">
-                                            <h5>Name</h5>
+                                            <h5>Name4</h5>
                                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                                         </td>
                                     </tr>
@@ -212,7 +205,8 @@
                                         </td>
                                         <td valign="top">
                                             <h5>Name</h5>
-                                            <p>In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque maiores laborum?</p>
+                                            <p>In, molestiae! Reprehenderit aperiam vero magni facilis fugit temporibus, eaque
+                                                maiores laborum?</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -225,28 +219,34 @@
                                         </td>
                                         <td valign="top">
                                             <h5>Name</h5>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem numquam, porro cumque eligendi sequi provident esse officia saepe recusandae</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis exercitationem
+                                                numquam, porro cumque eligendi sequi provident esse officia saepe recusandae</p>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#reviewCarousel" role="button" data-slide="prev">
+                </div>
+                <div class="mt-3">
+                    <a class="review-more-prev" href="#reviewCarousel" role="button" data-slide="prev">
                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#reviewCarousel" role="button" data-slide="next">
+                    <a class="review-more-num review-more-current" href="#reviewCarousel" data-slide-to="0">1</a>
+                    <a class="review-more-num" href="#reviewCarousel" data-slide-to="1">2</a>
+                    <a class="review-more-num" href="#reviewCarousel" data-slide-to="2">3</a>
+                    <a class="review-more-num" href="#reviewCarousel" data-slide-to="3">4</a>
+                    <a class="review-more-next" href="#reviewCarousel" role="button" data-slide="next">
                         <i class="fa fa-chevron-right" aria-hidden="true"></i>
                         <span class="sr-only">Next</span>
                     </a>
-                </div>    
-                
+                </div>
             </div>
 
             <div class="mt-5">
-                <h1>Dogs</h1>
-                <div class="card-deck">
+                <h1>Dogs <i class="fa fa-plus" data-toggle="modal" data-target="#registerDogModal" aria-hidden="true"></i></h1>
+                <div id="dogs" class="card-deck">
                     <div class="col-sm-6 col-lg-4">
                         <div class="card dog-card">
 
@@ -288,7 +288,7 @@
                             </div>
                         </div>
                     </div>
-            
+
                     <div class="col-sm-6 col-lg-4">
                         <div class="card dog-card">
                             <div id="dogCarousel_2" class="carousel slide card-img-top" data-interval="false">
@@ -410,7 +410,53 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Edit profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="profile_form" method="POST" encType="multipart/form-data">
+                        <div class="form-group">
+                            <label for="user_name">Username</label>
+                            <input id="user_name" name="user_name" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_des">Description</label>
+                            <textarea id="user_des" name="user_des" rows="4" col="60" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" id="submit_user" class=" button btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> form}}
+    
 </div>
+
+<script>
+    $(function () {
+        $('#reviewCarousel').on('slide.bs.carousel', event => {
+            $('.review-more-num:nth-child(' + (event.to + 2) + ')').addClass('review-more-current')
+            $('.review-more-num:nth-child(' + (event.from + 2) + ')').removeClass('review-more-current')
+        })
+
+        // Smooth page jump
+        $('a[href="#dogs"], a[href="#reviewCarousel"]').on('click', function (event) {
+            var target = $(this.getAttribute('href'));
+            if (target.length) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 120 + "px"
+                }, { duration: 600 });
+            }
+        });
+    })
+</script>
