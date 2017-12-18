@@ -20,13 +20,19 @@ router.get('/view/:segment', (req, res) => {
     });
 });
 
+router.get('/view', (req, res) => {
+    Dog.find({}, {__v: 0}).then(dogs => {
+        res.json(dogs);
+    });
+});
+
+
 // Get my dogs only
-router.get('/mydog', (req, res) => {
+router.get('/mydogs', (req, res) => {
     Dog.find({ownerID: req.session.passport.user}).then(dogs => {
         res.json(dogs);
     })
 })
-
 
 router.get('/reg',(req,res)=>{
 
@@ -35,33 +41,32 @@ router.get('/reg',(req,res)=>{
 
 // Post a dog registration
 router.post('/registration' , function(req, res) {
-    
 
-
-
-    Dog.create({
+    //Create new dog
+    let newDog = new Dog({
         name: req.body.dog_name,
         breed: req.body.dog_breed,
         sex: req.body.dog_sex,
         age: req.body.dog_age,
         size: req.body.dog_size,
         description: req.body.dog_des,
-        photos: req.files.dog_photos,
+        photos: req.files.dog_photos.data.toString('base64'),
         ownerID: req.session.passport.user
     })
 
+    newDog.save()
+
+    //Update users dog list
     Dog.find( {ownerID:req.user._id}).then( (dogs) =>{
-        
         let ids = dogs.map( x => x.id)
         User.update(
             {_id:req.user._id},
             {dogIDs:ids}
-        ).then( (user)=>{
-            console.log("User dogs updated")
-            console.log(user)
-        })
+        )
     })
 
+
+    res.send(newDog)
 });
 
 // Delete a dog registration
@@ -88,6 +93,20 @@ router.put('/registration/:dogID', (req, res) => {
     ).then(() => {
         res.send('Dog information updated')
     })
+})
+
+router.get('/:dogID',(req,res)=>{
+
+
+    Dog.findOne({_id: req.params.dogID}).then( (dog)=>{
+
+        res.render('dog-page',dog)
+
+
+    })
+
+
+
 })
 
 module.exports = router;

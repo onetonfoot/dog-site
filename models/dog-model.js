@@ -14,13 +14,5 @@ const dogSchema = new Schema({
     ownerID: String,
 });
 
+
 let Dog = module.exports = mongoose.model('dog', dogSchema);
-
-module.exports.create = function(json) {
-
-    new Dog(json)
-    .save().then( (newDog) =>{
-        console.log('New dog created: ',newDog)
-        done(null,newDog)
-    })
-}
