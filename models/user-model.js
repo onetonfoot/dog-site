@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     username: String,
-    ownerID: String,
+    userID: String,
     email: String,
     photos: Array,
     description:String,
@@ -26,7 +26,8 @@ module.exports.findOrCreate = function(profile,done){
                 new User({
                     userID: profile.id,
                     username: profile.displayName,
-                    email: profile.emails[0].value
+                    email: profile.emails[0].value,
+                    photos: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
                 }).save().then((newUser) => {
                     console.log('created new user: ', newUser);
                     done(null, newUser);

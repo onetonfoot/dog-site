@@ -362,6 +362,7 @@
     vertical-align: middle;
 }
 
-#profileModal .modal-dialog {
+#profileModal .modal-dialog,
+#registerDogModal .modal-dialog {
     width: 80%;
 }

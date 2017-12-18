@@ -2,7 +2,7 @@
     <div class="row mt-5">
         <div class="col-sm-4 mb-5 pb-5">
             <div class="profile-container">
-                <img class="profile-img" src="https://assets.entrepreneur.com/content/3x2/1300/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg">
+                <img class="profile-img">
             </div>
             <div class="card-body">
                 <div class="rating">
@@ -16,13 +16,10 @@
         </div>
         <div class="col-sm-8 mb-5 pb-5">
             <div>
-                <h1>Name
+                <h1 id="profile-user-name">Name&#160;
                     <i class="fa fa-pencil" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>
                 </h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. In, molestiae! Reprehenderit aperiam vero magni
-                    facilis fugit temporibus, eaque maiores laborum? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quis exercitationem numquam, porro cumque eligendi sequi provident esse officia saepe recusandae deleniti
-                    voluptatum, architecto dignissimos </p>
+                <p id="profile-user-des">Edit your description</p>
                 <p class="stat mt-4">
                     <span>3 &#160;</span>
                     <a href="#dogs">
@@ -245,7 +242,9 @@
             </div>
 
             <div class="mt-5">
-                <h1>Dogs <i class="fa fa-plus" data-toggle="modal" data-target="#registerDogModal" aria-hidden="true"></i></h1>
+                <h1>Dogs&#160;
+                    <i class="fa fa-plus" data-toggle="modal" data-target="#registerDogModal" aria-hidden="true"></i>
+                </h1>
                 <div id="dogs" class="card-deck">
                     <div class="col-sm-6 col-lg-4">
                         <div class="card dog-card">
@@ -422,32 +421,71 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="profile_form" method="POST" encType="multipart/form-data">
+                    <form id="profile_form" method="put" action="/user/information">
                         <div class="form-group">
                             <label for="user_name">Username</label>
                             <input id="user_name" name="user_name" type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="user_des">Description</label>
-                            <textarea id="user_des" name="user_des" rows="4" col="60" class="form-control"></textarea>
+                            <textarea id="user_des" name="user_des" rows="4" col="60" maxlength="1500" class="form-control"></textarea>
                         </div>
-                        <button type="submit" id="submit_user" class=" button btn btn-primary">Submit</button>
+                        <input type="submit" id="submit_user" class=" button btn btn-primary" value="Submit">
                     </form>
                 </div>
             </div>
         </div>
     </div>
     {{> form}}
-    
+
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 
 <script>
     $(function () {
+        // Highlight current carousel slide on review carousel
         $('#reviewCarousel').on('slide.bs.carousel', event => {
             $('.review-more-num:nth-child(' + (event.to + 2) + ')').addClass('review-more-current')
             $('.review-more-num:nth-child(' + (event.from + 2) + ')').removeClass('review-more-current')
         })
 
+        // Get user private profile page from server
+        $.get('/user/profile').done(user => {
+            $('img.profile-img').attr({ src: user.photos[0]})
+            $('#profile-user-name').html(user.username + '&#160; <i class="fa fa-pencil" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>');
+            $('#profile-user-des').html(user.description.replace(/\n/g, '<br>'));
+        });
+
+        // Put updated user information to server
+        $('#profile_form').submit(event => {
+            event.preventDefault();
+            $.ajax({
+                type: "PUT",
+                url: '/user/information',
+                data: {
+                    "user_name": $('#user_name').val(),
+                    "user_des": $('#user_des').val()
+                },
+                success: function () {
+                    console.log("User information updated");
+                },
+                error: function () {
+                    console.log("User information not updated");
+                }
+            }).then(user => {
+                $('#profile-user-name').html(user.username + '&#160; <i class="fa fa-pencil" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>');
+                $('#profile-user-des').html(user.description.replace(/\n/g, '<br>'));
+                $('#profileModal').modal('hide');
+            })
+        });
+
+        // Autofill modal from name and description field
+        $('#profileModal').on('show.bs.modal', ()=>{
+            $('input#user_name').val($('#profile-user-name').text());
+            $('textarea#user_des').val($('#profile-user-des').html().replace(/<br>/g, '\n'));
+        })
+        
         // Smooth page jump
         $('a[href="#dogs"], a[href="#reviewCarousel"]').on('click', function (event) {
             var target = $(this.getAttribute('href'));
