@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const Dog = require('../models/dog-model');
+const User = require('../models/user-model');
 const path = require('path');
 const fileUpload = require('express-fileupload');
 
@@ -34,12 +35,9 @@ router.get('/reg',(req,res)=>{
 
 // Post a dog registration
 router.post('/registration' , function(req, res) {
-    // console.log(req.body)
-    let data = req.body
-    console.log(data); //fsdfsd
+    
 
-    // console.log(req.files.dog_photos); //slash.png
-    console.log(req.files.dog_photos); //89 50 4e ...
+
 
     Dog.create({
         name: req.body.dog_name,
@@ -50,9 +48,20 @@ router.post('/registration' , function(req, res) {
         description: req.body.dog_des,
         photos: req.files.dog_photos,
         ownerID: req.session.passport.user
-    }).then(()=>{
-        res.send('New dog registered')
     })
+
+    Dog.find( {ownerID:req.user._id}).then( (dogs) =>{
+        
+        let ids = dogs.map( x => x.id)
+        User.update(
+            {_id:req.user._id},
+            {dogIDs:ids}
+        ).then( (user)=>{
+            console.log("User dogs updated")
+            console.log(user)
+        })
+    })
+
 });
 
 // Delete a dog registration
