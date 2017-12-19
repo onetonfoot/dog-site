@@ -38,7 +38,7 @@ passport.use(
         clientID: keys.facebook.clientID,
         clientSecret: keys.facebook.clientSecret,
         callbackURL: '/auth/facebook/redirect',
-        profileFields: ['id', 'displayName', 'photos', 'email']
+        profileFields: ['id', 'displayName', 'email', 'picture.type(large)']
     }, (accessToken, refreshToken, profile, done) => {
         // check if user already exists in our own db
         User.findOrCreate(profile,done)
