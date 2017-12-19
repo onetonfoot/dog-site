@@ -21,7 +21,7 @@
             }
         })
 
-        let s = ` <div class="col-sm-6 col-lg-4">
+        let s = ` <div class="dog-col col-sm-6 col-lg-4 breed-${dogJson.breed} ${dogJson.sex} age-${dogJson.age} ${dogJson.size} ${dogJson.rating}">
                         <div class="card dog-card">
                             <div id="${dogJson._id}" class="carousel slide card-img-top" data-interval="false">
                                 <ol class="carousel-indicators">

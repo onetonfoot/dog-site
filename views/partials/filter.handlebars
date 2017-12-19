@@ -6,22 +6,23 @@
 
     <div class="dropdown">
         <button class="filter-btn btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Breed   
+            Breed
         </button>
         <div id="form-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input id="breed" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             </form>
         </div>
     </div>
 
     <div class="dropdown">
-        <button class="filter-btn btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="filter-btn btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Gender
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Male</a>
-            <a class="dropdown-item" href="#">Female</a>
+        <div id="gender" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" id="male" href="#">Male</a>
+            <a class="dropdown-item" id="female" href="#">Female</a>
+            <a class="dropdown-item" id="both-gender" href="#">Both</a>
         </div>
     </div>
 
@@ -29,10 +30,11 @@
         <button class="filter-btn btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Size
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Small</a>
-            <a class="dropdown-item" href="#">Medium</a>
-            <a class="dropdown-item" href="#">Large</a>
+        <div id="size" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" id="small" href="#">Small</a>
+            <a class="dropdown-item" id="medium" href="#">Medium</a>
+            <a class="dropdown-item" id="large" href="#">Large</a>
+            <a class="dropdown-item" id="all" href="#">All</a>
         </div>
     </div>
 
@@ -51,41 +53,4 @@
 </div>
 
 <script src="https://use.fontawesome.com/0117e057ac.js"></script>
-
-<script>
-    $(function() {
-
-        $("#range").ionRangeSlider({
-            min: 0,
-            max: 5000,
-            from: 0,
-            to: 5000,
-            type: 'double',
-            step: 1,
-            prefix: "$",
-        });
-        $('#price-menu').bind('click', function (e) {
-            e.stopPropagation()
-        })
-
-        $('.filter-btn').popover({
-            container: 'body',
-            html: true,
-            offset: 2,
-            content: function () {
-                return $(this).next('.popper-content').html();
-            }
-        });
-
-        $('input[name="datepicker"]').daterangepicker({
-            "autoApply": true
-        });
-
-        $('.daterangepicker').click(()=>{
-            $('.daterangepicker').css({
-                display: block
-            })
-        })
-
-    });
-</script>
+<script src="/js/filterDogs.js"></script>
