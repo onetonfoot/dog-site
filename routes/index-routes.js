@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 router.get('/profile',(req,res)=>{
 
-    res.render('profile')
+    res.render('profile',{loggedIn: req.isAuthenticated()})
 
 })
 
