@@ -173,13 +173,15 @@
     margin: 15px 0 !important;
 }
 
-.dog-card .carousel-item {
+.dog-card .carousel-item,
+.dogPhotos .carousel-item {
     position: absolute;
     top: 0;
     height: 100%;
 }
 
-.dog-card .carousel-item img {
+.dog-card .carousel-item img,
+.dogPhotos .carousel-item img {
     position: relative;
     height: 100%;
     margin: auto;
@@ -187,7 +189,8 @@
     transform: translateX(-50%)
 }
 
-.dog-card .carousel-inner {
+.dog-card .carousel-inner,
+.dogPhotos .carousel-inner {
     position: relative;
     width: 100%;
     padding-top: 75%;
@@ -257,13 +260,16 @@
 }
 
 .fa-pencil,
-.fa-plus {
+.fa-plus,
+.fa-trash {
     color: #AAA;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 .fa-pencil:hover,
-.fa-plus:hover {
+.fa-plus:hover,
+.fa-trash:hover {
     color: orange;
 }
 
@@ -365,4 +371,35 @@
 #profileModal .modal-dialog,
 #registerDogModal .modal-dialog {
     width: 80%;
+}
+
+.thumbnail {
+    position: relative;
+    margin-right: 10px;
+    width: 75px;
+    height: 50px;
+    background: none;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    padding: 0;
+}
+
+.thumbnail img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+}
+
+.dogPhotos .carousel {
+    border: 1px solid #CCC;
+    overflow: hidden;
+}
+
+.dogInfo td {
+    padding: 5px 30px 5px 0;
 }

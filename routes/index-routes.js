@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const Dog = require('../models/dog-model');
 
 
 router.get('/', (req, res) => {
@@ -11,6 +11,13 @@ router.get('/profile',(req,res)=>{
 
     res.render('profile')
 
+})
+
+
+router.get('/:dogID',(req,res)=>{
+    Dog.findOne({_id: req.params.dogID}).then( (dog)=>{
+        res.render('dog-page')
+    })
 })
 
 module.exports = router;
