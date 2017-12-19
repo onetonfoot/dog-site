@@ -2,7 +2,6 @@ const router = require('express').Router();
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const Dog = require('../models/dog-model');
-const User = require('../models/user-model');
 const path = require('path');
 const fileUpload = require('express-fileupload');
 
@@ -20,19 +19,13 @@ router.get('/view/:segment', (req, res) => {
     });
 });
 
-router.get('/view', (req, res) => {
-    Dog.find({}, {__v: 0}).then(dogs => {
-        res.json(dogs);
-    });
-});
-
-
 // Get my dogs only
-router.get('/mydogs', (req, res) => {
+router.get('/mydog', (req, res) => {
     Dog.find({ownerID: req.session.passport.user}).then(dogs => {
         res.json(dogs);
     })
 })
+
 
 router.get('/reg',(req,res)=>{
 
@@ -41,33 +34,26 @@ router.get('/reg',(req,res)=>{
 
 // Post a dog registration
 router.post('/registration' , function(req, res) {
+    // console.log(req.body)
+    let data = req.body
+    console.log(data); //fsdfsd
 
-    //Create new dog
-    let newDog = new Dog({
-        name: req.body.dog_name,
-        breed: req.body.dog_breed,
-        sex: req.body.dog_sex,
-        age: req.body.dog_age,
-        size: req.body.dog_size,
-        description: req.body.dog_des,
-        photos: req.files.dog_photos.data.toString('base64'),
-        ownerID: req.session.passport.user
-    })
+    // console.log(req.files.dog_photos); //slash.png
+    console.log(req.files.dog_photos); //89 50 4e ...
 
-    newDog.save()
-
-    //Update users dog list
-    Dog.find( {ownerID:req.user._id}).then( (dogs) =>{
-        let ids = dogs.map( x => x.id)
-        User.update(
-            {_id:req.user._id},
-            {dogIDs:ids}
-        )
-    })
-
-
-    res.send(newDog)
-});
+    // Dog.create({
+    //     name: req.body.name,
+    //     breed: req.body.breed,
+    //     sex: req.body.sex,
+    //     age: req.body.age,
+    //     size: req.body.size,
+    //     description: req.body.description,
+    //     photos: req.body.photos,
+    //     ownerID: req.body.ownerID // For postman testing only, for real case use the code below
+    //     //ownerID: req.session.passport.user
+    
+    res.send('New dog registered')}
+);
 
 // Delete a dog registration
 router.delete('/registration/:dogID', (req, res) => {
@@ -93,20 +79,6 @@ router.put('/registration/:dogID', (req, res) => {
     ).then(() => {
         res.send('Dog information updated')
     })
-})
-
-router.get('/:dogID',(req,res)=>{
-
-
-    Dog.findOne({_id: req.params.dogID}).then( (dog)=>{
-
-        res.render('dog-page',dog)
-
-
-    })
-
-
-
 })
 
 module.exports = router;
