@@ -8,6 +8,7 @@ const fileUpload = require('express-fileupload');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 router.use(fileUpload());
+router.use(urlencodedParser);
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'form.html'))
@@ -72,10 +73,10 @@ router.post('/registration' , function(req, res) {
 });
 
 // Delete a dog registration
-router.delete('/registration/:dogID', (req, res) => {
-    Dog.remove({_id: req.params.dogID})
+router.delete('/registration', (req, res) => {
+    Dog.findOneAndRemove({_id: req.body.dog_id})
         .then(()=>{
-            res.send('Registration deleted')
+            res.send('Removed')
         })
 })
 

@@ -5,6 +5,26 @@
     </div>
 </div>
 
+<div class="modal fade" id="removeDogModal" tabindex="-1" role="dialog" aria-labelledby="removeDogModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeDogModalLabel">Remove dog</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to remove this dog from Pawww?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" id="delete-button">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {{> form}}
 
 <script>
@@ -77,10 +97,10 @@
                     <div class="owner-control mt-4">
                         <h5>Manage your dog</h5>
                         <i class="fa fa-pencil fa-2x" data-toggle="modal" data-target="#formDogModal" aria-hidden="true"></i>
-                        <i class="fa fa-trash fa-2x" data-toggle="modal" data-target="#deleteDogModal" aria-hidden="true"></i>
+                        <i class="fa fa-trash fa-2x" data-toggle="modal" data-target="#removeDogModal" aria-hidden="true"></i>
                     </div>
                 </div>`);
-            
+
             $('.container').append(`
                 <div class="mt-5">
                     <h3>Description</h3>
@@ -91,6 +111,16 @@
                     <p>${dogJson.reviews}</p>
                 </div>
                 `);
+
+            $('#delete-button').click(() => {
+                $.ajax({
+                    type: "DELETE",
+                    url: 'http://localhost:8080/dog/registration',
+                    data: {dog_id: dogJson._id}
+                }).done(()=>{
+                    window.location.replace("http://localhost:8080/");
+                });
+            })
         })
 
     }) 
