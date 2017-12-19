@@ -50,7 +50,7 @@ router.post('/registration' , function(req, res) {
         age: req.body.dog_age,
         size: req.body.dog_size,
         description: req.body.dog_des,
-        photos: req.files.dog_photos.data.toString('base64'),
+        photos: req.files.dog_photos.slice(0,5).map(photo => photo.data.toString('base64')),
         ownerID: req.session.passport.user
     })
 

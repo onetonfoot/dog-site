@@ -28,8 +28,8 @@
                             <label for="InputSex">Sex</label>
                             <select type="age" name="dog_sex" id="dog_sex" class="form-control" required>
                                 <option></option>
-                                <option>M</option>
-                                <option>F</option>
+                                <option>Male</option>
+                                <option>Female</option>
                             </select>
                         </div>
                         <button id="next_1" class="button btn btn-primary" type="button">Next</button>
@@ -50,30 +50,34 @@
                                 <option>8</option>
                                 <option>9</option>
                                 <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="InputSize">Size</label>
                             <select type="age" name="dog_size" id="dog_size" class="form-control" required>
                                 <option></option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
+                                <option>Small</option>
+                                <option>Medium</option>
+                                <option>Large</option>
                             </select>
                         </div>
-                        <button id="back2_1" class="button btn btn-primary" type="button">Back</button>
+                        <button id="back_1" class="button btn btn-primary" type="button">Back</button>
                         <button id="next_2" class="button btn btn-primary" type="button">Next</button>
                     </div>
 
                     <div id="form_3" class="hide">
                         <div class="form-group">
                             <label for="UploadDes">Description</label>
-                            <input type="text" name="dog_des" id="dog_des" class="form-control" placeholder="say something about your puppy">
+                            <textarea type="text" name="dog_des" id="dog_des" class="form-control" placeholder="say something about your puppy"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="UploadPhoto">Upload photos</label>
-                            <input id="dog_photos" name="dog_photos" type="file" accept="image/*">
+                            <label for="UploadPhoto">Upload photos (maximum 5)</label>
+                            <input id="dog_photos" name="dog_photos" type="file" accept="image/*" class="form-control-file" multiple>
                         </div>
+                        <button id="back_2" class="button btn btn-primary" type="button">Back</button>
                         <button type="submit" id="submit_dog" class=" button btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -83,32 +87,53 @@
 </div>
 
 <script>
-    var $dog_name = $('#dog_name');
-    var $dog_breed = $('#dog_breed');
-    var $dog_sex = $('#dog_sex');
-    var $dog_age = $('#dog_age');
-    var $dog_size = $('#dog_size');
-    var data = $('#dog_form');
-
 
     $(document).ready(function () {
 
-        $('#next_1').click(() => {
-            $('.progress-bar').attr({
-                "aria-valuenow": 33.33,
-                "style": "width: 33.33%"
-            })
-            $('#form_1').addClass('hide')
+        let alert = '<div class="alert alert-danger d-inline-block ml-3" role="alert">Fill in all fields before you proceed.</div>';
+
+        $('#back_1').click(()=>{
+            $('#form_2').addClass('hide')
+            $('#form_1').removeClass('hide')
+        })
+
+        $('#back_2').click(()=>{
+            $('#form_3').addClass('hide')
             $('#form_2').removeClass('hide')
         })
 
+        $('#next_1').click(() => {
+            if (!$('input#dog_name').val() || !$('input#dog_breed').val() || $('#dog_sex')[0].selectedIndex <= 0) {
+                if (!$('#form_1 .alert').length) {
+                    $('#form_1').append(alert)
+                }
+            }
+            if ($('input#dog_name').val() && $('input#dog_breed').val() && $('#dog_sex')[0].selectedIndex > 0) {
+                $('.progress-bar').attr({
+                    "aria-valuenow": 33.33,
+                    "style": "width: 33.33%"
+                })
+                $('#form_1').addClass('hide')
+                $('#form_2').removeClass('hide')
+                $('#form_1 .alert').remove()
+            }
+        })
+
         $('#next_2').click(() => {
-            $('.progress-bar').attr({
-                "aria-valuenow": 66.66,
-                "style": "width: 66.66%"
-            })
-            $('#form_2').addClass('hide')
-            $('#form_3').removeClass('hide')
+            if ($('#dog_age')[0].selectedIndex<=0 || $('#dog_size')[0].selectedIndex<=0) {
+                if (!$('#form_2 .alert').length) {
+                    $('#form_2').append(alert)
+                }
+            }
+            if ($('#dog_age')[0].selectedIndex>0 && $('#dog_size')[0].selectedIndex>0) {
+                $('.progress-bar').attr({
+                    "aria-valuenow": 66.66,
+                    "style": "width: 66.66%"
+                })
+                $('#form_2').addClass('hide')
+                $('#form_3').removeClass('hide')
+                $('#form_2 .alert').remove()
+            }
         })
 
         $('#dog_photos').on('change', () => {
@@ -116,49 +141,50 @@
                 "aria-valuenow": 100,
                 "style": "width: 100%"
             })
+
+            if ($('#dog_photos').get(0).files.length > 5) {
+                $('#form_3').append('<div class="alert alert-warning d-inline-block ml-3 mt-3" role="alert">You can only upload at most 5 photos.</div>');
+            } else {
+                $('#form_3 .alert-warning').remove();
+            }
         })
 
-        //$('dog_submit').on('click', function() {
-
         $('#dog_form').submit(function (event) {
-            //console.log(FormData(this))
             event.preventDefault();
 
-            // let dog_form = $(this).serialize()
-            var formdata = {
-                'name': $dog_name.val(),
-                'breed': $dog_breed.val(),
-                'sex': $dog_sex.val(),
-                'age': $dog_age.val(),
-                'size': $dog_size.val()
-            };
-
-            console.log(dog_form);
-
-            $.ajax({
-                type: "POST",
-                url: 'http://localhost:8080/dog/registration',
-                data: new FormData(this),
-                // contentType: 'application/json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    console.log("A new dog");
-                    console.log(data);
-                    let s = createDogCard(data);
-                    $('#dogs').append(s)
-                    $('#registerDogModal').modal('hide')
-                },
-                error: function (data) {
-                    console.log("error");
-                    console.log(data);
-
+            if (!$('#dog_des').val() || !$('#dog_photos').val()) {
+                if (!$('#form_3 .alert-danger').length) {
+                    $('#form_3').append(alert)
                 }
-            });
+            }
 
+            if ($('#dog_des').val() && $('#dog_photos').val() && $('#dog_photos').get(0).files.length <= 5) {
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:8080/dog/registration',
+                    data: new FormData(this),
+                    // contentType: 'application/json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log("A new dog");
+                        console.log(data);
+                        let s = createDogCard(data);
+                        $('#dogs').append(s)
+                        $('#registerDogModal').modal('hide')
+                    },
+                    error: function (data) {
+                        console.log("error");
+                        console.log(data);
+
+                    }
+                });
+                $('#dog_form input, #dog_form textarea').val('');
+                $('#registerDogModal').modal('hide');
+            }
+            
         });
 
-        //});
     });
 </script>

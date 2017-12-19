@@ -2,7 +2,7 @@
 <script src="/js/createDogCard.js"></script>
 <div class="container">
     <div class="row mt-5">
-        <div class="col-sm-4 mb-5 pb-5">
+        <div class="col-sm-4">
             <div class="profile-container">
                 <img class="profile-img">
             </div>
@@ -21,7 +21,7 @@
                 <h1 id="profile-user-name">Name&#160;
                     <i class="fa fa-pencil" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>
                 </h1>
-                <p id="profile-user-des">Edit your description</p>
+                <p id="profile-user-des" class="mt-3">Edit your description</p>
                 <p class="stat mt-4">
                     <span>3 &#160;</span>
                     <a href="#dogs">
@@ -339,7 +339,7 @@
                 type: "PUT",
                 url: '/user/information',
                 data: {
-                    "user_name": $('#user_name').val(),
+                    "user_name": $('#user_name').val().trim(),
                     "user_des": $('#user_des').val()
                 },
                 success: function () {
