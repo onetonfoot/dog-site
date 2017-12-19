@@ -3,9 +3,12 @@ const exphbs = require('express-handlebars')
 const passport = require('passport');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
-const session = require('express-session');
+
 const keys = require('./config/keys');
 const flash = require('connect-flash');
+
+const session = require('express-session');
+const RedisStore = require("connect-redis")(session);
 const app = express();
 const http = require('http').Server(app); 
 const io = require('socket.io')(http); 
@@ -19,11 +22,20 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'))
 
 //Set up session
-app.use(session({
+sess = session({
     secret: 'secret',
+    store: new RedisStore({}),
     saveUninitialized: true,
     resave: true
-}));
+})
+
+app.use(sess);
+
+io.use(function(socket, next) {
+    sess(socket.request, socket.request.res, next);
+});
+
+
 
 // initialize passport
 app.use(passport.initialize());
