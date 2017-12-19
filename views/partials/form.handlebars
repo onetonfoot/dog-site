@@ -1,9 +1,9 @@
-<div class="modal fade" id="registerDogModal" tabindex="-1" role="dialog" aria-labelledby="registerDogModalLabel" aria-hidden="true"
+<div class="modal fade" id="formDogModal" tabindex="-1" role="dialog" aria-labelledby="formDogModalLabel" aria-hidden="true"
     data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Register a dog</h5>
+                <h5 class="modal-title" id="formDogModalLabel"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,7 +14,7 @@
                         aria-valuemax="100" style="width: 0%"></div>
                 </div>
 
-                <form id="dog_form" action="/dog/registration" method="POST" enctype="multipart/form-data">
+                <form id="dog_form" method="POST" enctype="multipart/form-data">
                     <div id="form_1">
                         <div class="form-group">
                             <label for="InputName">Name</label>
@@ -149,42 +149,7 @@
             }
         })
 
-        $('#dog_form').submit(function (event) {
-            event.preventDefault();
-
-            if (!$('#dog_des').val() || !$('#dog_photos').val()) {
-                if (!$('#form_3 .alert-danger').length) {
-                    $('#form_3').append(alert)
-                }
-            }
-
-            if ($('#dog_des').val() && $('#dog_photos').val() && $('#dog_photos').get(0).files.length <= 5) {
-                $.ajax({
-                    type: "POST",
-                    url: 'http://localhost:8080/dog/registration',
-                    data: new FormData(this),
-                    // contentType: 'application/json',
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        console.log("A new dog");
-                        console.log(data);
-                        let s = createDogCard(data);
-                        $('#dogs').append(s)
-                        $('#registerDogModal').modal('hide')
-                    },
-                    error: function (data) {
-                        console.log("error");
-                        console.log(data);
-
-                    }
-                });
-                $('#dog_form input, #dog_form textarea').val('');
-                $('#registerDogModal').modal('hide');
-            }
-            
-        });
+        
 
     });
 </script>

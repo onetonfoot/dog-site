@@ -5,13 +5,14 @@
     </div>
 </div>
 
-
+{{> form}}
 
 <script>
     $(function () {
 
         console.log(`{{dogJson._id}}`);
 
+        // Make dog carousel
         function renderDogCarousel(dogJson) {
             let imgs = dogJson.photos.map((img, i) => {
                 if (i == 0) {
@@ -39,50 +40,51 @@
                                     ${imgs.join("")}
                                 </div>
                                 </div>
-                                <div class="mt-3">
+                                <div class="mt-3 d-flex justify-content-center">
                                     ${thumbnail.join("")}
                                 </div>
                             </div>`
             return s
         }
 
+        // Get dog information
         $.get("/dog" + window.location.pathname).done(dogJson => {
             $('.dogPhotos').html(renderDogCarousel(dogJson));
 
             $('.dogInfo').html(`
                 <div class="ml-5">
-                    <h1>${dogJson.name}</h1>
+                    <h1 id="dogName">${dogJson.name}</h1>
                     <table class="mt-4">
                         <tbody>
                             <tr>
                                 <td>Breed</td>
-                                <td>${dogJson.breed}</td>
+                                <td id="dogBreed">${dogJson.breed}</td>
                             </tr>
                             <tr>
                                 <td>Sex</td>
-                                <td>${dogJson.sex}</td>
+                                <td id="dogSex">${dogJson.sex}</td>
                             </tr>
                             <tr>
                                 <td>Age</td>
-                                <td>${dogJson.age}</td>
+                                <td id="dogAge">${dogJson.age}</td>
                             </tr>
                             <tr>
                                 <td>Size</td>
-                                <td>${dogJson.size}</td>
+                                <td id="dogSize">${dogJson.size}</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="owner-control mt-4">
                         <h5>Manage your dog</h5>
-                        <i class="fa fa-pencil fa-2x" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>
-                        <i class="fa fa-trash fa-2x" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>
+                        <i class="fa fa-pencil fa-2x" data-toggle="modal" data-target="#formDogModal" aria-hidden="true"></i>
+                        <i class="fa fa-trash fa-2x" data-toggle="modal" data-target="#deleteDogModal" aria-hidden="true"></i>
                     </div>
                 </div>`);
             
             $('.container').append(`
                 <div class="mt-5">
                     <h3>Description</h3>
-                    <p>${dogJson.description}</p>
+                    <p id="dogDescription">${dogJson.description.replace(/\n/g, '<br>')}</p>
                 </div>
                 <div class="mt-5">
                     <h3>Reviews</h3>
@@ -93,3 +95,5 @@
 
     }) 
 </script>
+
+<script src="/js/updateDog.js"></script>

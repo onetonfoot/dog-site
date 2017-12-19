@@ -42,7 +42,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">${dogJson.name}</h4>
                                 <p class="card-text">${dogJson.description}</p>
-                                <a href="/dog/${dogJson._id}" class="btn btn-primary">Go somewhere</a>
+                                <a href="/${dogJson._id}" class="btn btn-primary">View dog</a>
                             </div>
                         </div>
                     </div>`

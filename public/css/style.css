@@ -81,7 +81,6 @@
     margin: 0 !important;
 }
 
-
 /* Facebook */
 
 .login-container {
@@ -167,6 +166,15 @@
 .card-deck {
     margin: 15px;
     width: 100%;
+}
+
+.card-text {
+    display: inline-block; 
+    display: -webkit-box;  
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 3em;
 }
 
 .dog-card {
@@ -369,13 +377,12 @@
 }
 
 #profileModal .modal-dialog,
-#registerDogModal .modal-dialog {
+#formDogModal .modal-dialog {
     width: 80%;
 }
 
 .thumbnail {
     position: relative;
-    margin-right: 10px;
     width: 75px;
     height: 50px;
     background: none;

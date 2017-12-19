@@ -58,12 +58,14 @@ router.post('/registration' , function(req, res) {
 
     //Update users dog list
     Dog.find( {ownerID:req.user._id}).then( (dogs) =>{
+        console.log('ok')
         let ids = dogs.map( x => x.id)
         User.update(
             {_id:req.user._id},
             {dogIDs:ids}
         )
     })
+    
 
 
     res.send(newDog)
@@ -78,23 +80,25 @@ router.delete('/registration/:dogID', (req, res) => {
 })
 
 // Update a dog registration information
-router.put('/registration/:dogID', (req, res) => {
-    Dog.update(
-        {_id: req.params.dogID},
+router.put('/registration', (req, res) => {
+    Dog.findOneAndUpdate(
+        {_id: req.body.dog_ID},
         {
-            name: req.body.name,
-            breed: req.body.breed,
-            sex: req.body.sex,
-            age: req.body.age,
-            size: req.body.size,
-            description: req.body.description,
-            photos: req.body.photos
-        }
-    ).then(() => {
-        res.send('Dog information updated')
+            name: req.body.dog_name,
+            breed: req.body.dog_breed,
+            sex: req.body.dog_sex,
+            age: req.body.dog_age,
+            size: req.body.dog_size,
+            description: req.body.dog_des
+            //photos: req.files.dog_photos.slice(0,5).map(photo => photo.data.toString('base64')),
+        }, 
+        {new: true}
+    ).then(dog => {
+        res.send(dog);
     })
 })
 
+// Get dog information
 router.get('/:dogID',(req,res)=>{
     Dog.findOne({_id: req.params.dogID}).then( (dog)=>{
         res.json(dog)

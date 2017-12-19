@@ -15,6 +15,17 @@
                     <span class="fa fa-star"></span>
                 </div>
             </div>
+            <div class="d-flex justify-content-center">
+                <p class="stat mt-4">
+                    <span>3 &#160;
+                    <a href="#dogs">
+                        <img class="dog-icon" src="/img/dog_icon.svg" alt="dog_icon">
+                    </a>
+                    &ensp; 10
+                        <a href="#reviewCarousel">Reviews</a>
+                    </span>
+                </p>
+            </div>
         </div>
         <div class="col-sm-8 mb-5 pb-5">
             <div>
@@ -22,15 +33,6 @@
                     <i class="fa fa-pencil" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>
                 </h1>
                 <p id="profile-user-des" class="mt-3">Edit your description</p>
-                <p class="stat mt-4">
-                    <span>3 &#160;</span>
-                    <a href="#dogs">
-                        <img class="dog-icon" src="/img/dog_icon.svg" alt="dog_icon">
-                    </a>
-                    <span>&ensp; 10
-                        <a href="#reviewCarousel">Reviews</a>
-                    </span>
-                </p>
             </div>
 
 
@@ -240,7 +242,7 @@
 
             <div class="mt-5">
                 <h1>Dogs&#160;
-                    <i class="fa fa-plus" data-toggle="modal" data-target="#registerDogModal" aria-hidden="true"></i>
+                    <i class="fa fa-plus" data-toggle="modal" data-target="#formDogModal" aria-hidden="true"></i>
                 </h1>
                 <div id="dogs" class="card-deck">
 
@@ -337,6 +339,7 @@
         });
     })
 </script>
+<script src="/js/registerDog.js"></script>
 <script>
     $(function () {
         $.get('/dog/mydogs').done((json_array) => {
