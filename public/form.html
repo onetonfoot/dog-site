@@ -27,11 +27,11 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Register a dog</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button id="close_modal" type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="confirm();">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="width:500px;height:350px">
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                     </div>
@@ -83,29 +83,31 @@
                                     <option>L</option>
                                 </select>
                             </div>
-                            <button id="back2_1" class="button btn btn-primary" type="button">Back</button>
+                            <button id="back_1" class="button btn btn-primary" type="button">Back</button>
                             <button id="next_2" class = "button btn btn-primary" type="button">Next</button>
                         </div>
                         
                         <div id="form_3" class="hide">
                             <div class="form-group">
                                 <label for="UploadDes">Description</label>
-                                <input type="text" name="dog_des" id="dog_des" class="form-control" placeholder="say something about your puppy">
+                                <textarea type="text" name="dog_des" id="dog_des" class="form-control" placeholder="say something about your puppy"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="UploadPhoto">Upload photos</label>
-                                <input id="dog_photos" name="dog_photos" type="file" accept="image/*">                       
+                                <label for="UploadPhoto">Upload photos, maximum 4</label>
+                                <!-- need server side backup code -->
+                                <input id="dog_photos" name="dog_photos" type="file" accept=".jpg, .jpeg, .png" multiple="4">                       
                             </div>
+                            <button id="back_2" class="button btn btn-primary" type="button">Back</button>
                             <button type="submit"  id="submit_dog" class=" button btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    <div id="form_4" class="hide">
+                        <h3>Your dog has been registered !</h3>
+                    </div>
                 </div>
             </div>
 
-            <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
@@ -127,7 +129,7 @@
             })
             $('#form_1').addClass('hide')
             $('#form_2').removeClass('hide')
-        })
+        });
 
         $('#next_2').click(()=> {
             $('.progress-bar').attr({
@@ -136,16 +138,73 @@
             })
             $('#form_2').addClass('hide')
             $('#form_3').removeClass('hide')
-        })
+        });
 
         $('#dog_photos').on('change', ()=> {
             $('.progress-bar').attr({
                 "aria-valuenow": 100,
                 "style": "width: 100%"
             })
-        })
+        });
+
+        $('#back_1').click(()=> {
+            
+            $('#form_2').addClass('hide')
+            $('#form_1').removeClass('hide');
+        });
+
+        $('#back_2').click (function() {
+            $('#form_3').addClass('hide');
+            $('#form_2').removeClass('hide')
+        });
+
         
-        //$('dog_submit').on('click', function() {
+        $('#submit_dog').click (function() {
+            $('#form_3').addClass('hide');
+            $('#form_4').removeClass('hide')
+        });
+        
+        // $('#close_modal').click (function() {
+        //    if (window.confirm("Are you sure to cancel ?")){
+        //     $('.progress-bar').attr({
+        //         "aria-valuenow": 0,
+        //         "style": "width: 0%"
+        //     });
+            
+        //     $('#form_4').addClass('hide');
+        //     $('#form_3').addClass('hide');
+        //     $('#form_2').addClass('hide');
+        //     $('form input, form select').val('');
+        //     $('#form_1').removeClass('hide');
+        // });
+
+        function confirm (){
+            var result = confirm('Are you sure to cancel ?');
+            if (result == true){
+                $('#close_modal').click (function() {
+            $('.progress-bar').attr({
+                "aria-valuenow": 0,
+                "style": "width: 0%"
+            });
+            
+            $('#form_4').addClass('hide');
+            $('#form_3').addClass('hide');
+            $('#form_2').addClass('hide');
+            $('form input, form select').val('');
+            $('#form_1').removeClass('hide');
+        });
+        }
+        else{
+            return false
+        }
+    }
+    
+            
+
+        
+        
+
+
 
         $('#dog_form').submit(function(event){
             //console.log(FormData(this))
