@@ -14,7 +14,7 @@ router.get('/profile',(req,res)=>{
 
 router.get('/:dogID',(req,res)=>{
     Dog.findOne({_id: req.params.dogID}).then( (dog)=>{
-        res.render('dog-page')
+        res.render('dog-page-public')
     })
 })
 

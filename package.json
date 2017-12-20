@@ -9,6 +9,7 @@
   "author": "Dom, Justin and Shawn",
   "license": "ISC",
   "dependencies": {
+    "clone": "^2.1.1",
     "connect-flash": "^0.1.1",
     "connect-redis": "^3.3.2",
     "ejs": "^2.5.7",
