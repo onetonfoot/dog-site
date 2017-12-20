@@ -55,19 +55,21 @@ router.post('/registration' , function(req, res) {
         ownerID: req.session.passport.user
     })
 
-    newDog.save()
-
-    //Update users dog list
-    Dog.find( {ownerID:req.user._id}).then( (dogs) =>{
-        console.log('ok')
-        let ids = dogs.map( x => x.id)
-        User.update(
-            {_id:req.user._id},
-            {dogIDs:ids}
-        )
+    newDog.save().then(()=>{
+        //Update users dog list
+        Dog.find( {ownerID:req.user._id}).then( (dogs) =>{
+            console.log('ok')
+            let ids = dogs.map( x => x.id)
+            console.log(ids)
+            console.log(req.user._id)
+            User.findOneAndUpdate(
+                {_id:req.user._id},
+                {dogIDs:ids}
+            ).catch(e =>{
+                console.log(e)
+            })
+        })
     })
-    
-
 
     res.send(newDog)
 });

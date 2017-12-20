@@ -16,15 +16,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <p class="stat mt-4">
-                    <span>3 &#160;
-                    <a href="#dogs">
-                        <img class="dog-icon" src="/img/dog_icon.svg" alt="dog_icon">
-                    </a>
-                    &ensp; 10
-                        <a href="#reviewCarousel">Reviews</a>
-                    </span>
-                </p>
+                <p class="stat mt-4"></p>
             </div>
         </div>
         <div class="col-sm-8 mb-5 pb-5">
@@ -294,6 +286,28 @@
             $('img.profile-img').attr({ src: user.photos[0]})
             $('#profile-user-name').html(user.username + '&#160; <i class="fa fa-pencil" data-toggle="modal" data-target="#profileModal" aria-hidden="true"></i>');
             $('#profile-user-des').html(user.description.replace(/\n/g, '<br>'));
+            $('p.stat').html(`
+                <span>${user.dogIDs.length} &#160;
+                    <a href="#dogs">
+                        <img class="dog-icon" src="/img/dog_icon.svg" alt="dog_icon">
+                    </a>
+                    &ensp; ${user.reviews.length}
+                    <a href="#reviewCarousel">Reviews</a>
+                </span>
+            `)
+
+            // Smooth page jump
+            $('a[href="#dogs"], a[href="#reviewCarousel"]').on('click', function (event) {
+                var target = $(this.getAttribute('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 120 + "px"
+                    }, {
+                        duration: 600
+                    });
+                }
+            });
         });
 
         // Put updated user information to server
@@ -325,18 +339,6 @@
             $('textarea#user_des').val($('#profile-user-des').html().replace(/<br>/g, '\n'));
         })
         
-        // Smooth page jump
-        $('a[href="#dogs"], a[href="#reviewCarousel"]').on('click', function (event) {
-            var target = $(this.getAttribute('href'));
-            if (target.length) {
-                event.preventDefault();
-                $('html, body').stop().animate({
-                    scrollTop: target.offset().top - 120 + "px"
-                }, {
-                    duration: 600
-                });
-            }
-        });
     })
 </script>
 <script src="/js/registerDog.js"></script>
