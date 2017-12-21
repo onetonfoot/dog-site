@@ -109,7 +109,6 @@ router.get('/:dogID', (req, res) => {
         User.findOne({ _id: dog.ownerID }).then(user => {
             dogCopy.ownerName = user.username;
             dogCopy.ownerPhoto = user.photos;
-            console.log(dogCopy);
             res.send(dogCopy);
         })
     })

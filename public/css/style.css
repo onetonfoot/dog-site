@@ -8,8 +8,6 @@
     border-bottom: solid 2px black;
 }
 
-@
-
 .navbar-brand img{
     height: 50px;
     margin-top: 5px;
@@ -450,4 +448,29 @@
 
 #postReview textarea {
     max-width: 500px;
+}
+
+.dog_rating button {
+    position: relative;
+    background: none;
+    border: 0;
+}
+
+.dog_rating button:focus {
+    outline: none;
+}
+
+.dog_rating input {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+
+.checkmark {
+    top: 0;
+    left: 0;
 }

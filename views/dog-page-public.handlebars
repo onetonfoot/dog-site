@@ -23,6 +23,16 @@
                             <td id="dogSize"></td>
                         </tr>
                         <tr>
+                            <td>Rating</td>
+                            <td id="dogReview">
+                                <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                                <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                                <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                                <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                                <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Owner</td>
                             <td id="dogOwner">
                                 <span></span>
@@ -47,9 +57,35 @@
     </div>
     <div class="mt-5">
         <h3>Reviews</h3>
-        {{!-- <p id="dogReviews"></p> --}}
+        <p id="dogReviews"></p>
+        <div id="reviewCarousel" class="carousel slide" data-interval="false" data-wrap="false">
+            <div class="carousel-inner">
+            </div>
+        </div>
         <form id="postReview">
             <h5>Post a review</h5>
+            <div class="dog_rating">
+                <button>
+                    <input type="radio" name="star" value="1">
+                    <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                </button>
+                <button>
+                    <input type="radio" name="star" value="2">
+                    <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                </button>
+                <button>
+                    <input type="radio" checked="checked" name="star" value="3">
+                    <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                </button>
+                <button>
+                    <input type="radio" name="star" value="4">
+                    <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                </button>
+                <button>
+                    <input type="radio" name="star" value="5">
+                    <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                </button>
+            </div>
             <textarea class="form-control" name="dog_review" rows="3"></textarea>
             <input type="submit" value="Submit" class="btn btn-primary mt-3">
         </form>
@@ -80,8 +116,6 @@
 
 <script>
     $(function () {
-
-        console.log(`{{dogJson._id}}`);
 
         // Make dog carousel
         function renderDogCarousel(dogJson) {
@@ -120,7 +154,6 @@
 
         // Get dog information
         $.get("/dog" + window.location.pathname).done(dogJson => {
-            console.log(dogJson)
             $('.dogPhotos').html(renderDogCarousel(dogJson));
             $('#dogName').html(dogJson.name);
             $('#dogBreed').html(dogJson.breed);
@@ -136,12 +169,67 @@
             $('#dogDescription').html(dogJson.description.replace(/\n/g, '<br>'));
         })
 
+        // Change star color on click
+        const starColor = (num) => {
+            $('.dog_rating button:nth-child(' + num + ')').click(() => {
+                for (let x = 1; x <= num; x++) {
+                    $('.dog_rating button:nth-child(' + x + ')').css({
+                        color: 'rgb(232, 232, 0)'
+                    })
+                }
+                for (let y = num + 1; y <= 5; y++) {
+                    $('.dog_rating button:nth-child(' + y + ')').css({
+                        color: 'inherit'
+                    })
+                }
+            });
+        };
+
+        starColor(1);
+        starColor(2);
+        starColor(3);
+        starColor(4);
+        starColor(5);
+
+        // Default star rating at 3
+        for (let x = 1; x <= 3; x++) {
+            $('.dog_rating button:nth-child(' + x + ')').css({
+                color: 'rgb(232, 232, 0)'
+            })
+        }
+        for (let y = 4; y <= 5; y++) {
+            $('.dog_rating button:nth-child(' + y + ')').css({
+                color: 'inherit'
+            })
+        }
+
+        // Get review
+        $.get('/review' + window.location.pathname).done(reviews => {
+            console.log(reviews);
+            for (let table = 0; table <= Math.floor(reviews.length/3); table++) {
+                $('#reviewCarousel .carousel-inner').append(`
+                    <div class="carousel-item">
+                        <table class="review-table mt-3">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                `);
+            };
+            $('#reviewCarousel .carousel-item:first-child').addClass('active');
+            for (let review = 0; review <= reviews.length; review++) {
+                let tableNum = Math.ceil(review/3);
+                $('#reviewCarousel .carousel-item:nth-child('+ tableNum + ')').append(`
+                `);
+            };
+        });
+
+        // Post review
         $('#postReview').submit(event => {
             event.preventDefault();
-            console.log(window.log)
             $.post('/review' + window.location.pathname, {
-                review: $('#postReview textarea').val()
-            }).done(reviews=>{
+                rating: $('#postReview input[name="star"]:checked').val(),
+                text: $('#postReview textarea').val()
+            }).done(reviews => {
                 console.log(reviews)
             })
         });
