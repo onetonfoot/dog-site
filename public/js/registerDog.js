@@ -24,6 +24,10 @@ $('#dog_form').submit(function (event) {
                 let s = createDogCard(data);
                 $('#dogs').append(s)
                 $('#formDogModal').modal('hide')
+                $('#dog_form input, #dog_form textarea').val('');
+                $('#form_1').removeClass('hide')
+                $('#form_2').addClass('hide')
+                $('#form_3').addClass('hide')
             },
             error: function (data) {
                 console.log("error");
@@ -31,8 +35,6 @@ $('#dog_form').submit(function (event) {
 
             }
         });
-        $('#dog_form input, #dog_form textarea').val('');
-        $('#formDogModal').modal('hide');
     }
     
 });

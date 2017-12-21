@@ -1,4 +1,5 @@
 $('#formDogModal .modal-title').text('Update dog information');
+$('#dog_photos').parent().children().remove();
 
 const updateFormSelect = (elmID, key) => {
     for (let x = 1; x <= $('#' + elmID + ' option').length; x++) {
@@ -26,13 +27,13 @@ $.get("/dog" + window.location.pathname).done(dogJson => {
         let formData = new FormData(this);
         formData.append('dog_ID', dogJson._id)
 
-        if (!$('#dog_des').val() || !$('#dog_photos').val()) {
-            if (!$('#form_3 .alert-danger').length) {
-                $('#form_3').append(alert)
-            }
-        }
+        // if (!$('#dog_des').val() || !$('#dog_photos').val()) {
+        //     if (!$('#form_3 .alert-danger').length) {
+        //         $('#form_3').append(alert)
+        //     }
+        // }
 
-        if ($('#dog_des').val() && $('#dog_photos').val() && $('#dog_photos').get(0).files.length <= 5) {
+        //if ($('#dog_des').val() && $('#dog_photos').val() && $('#dog_photos').get(0).files.length <= 5) {
             $.ajax({
                 type: "PUT",
                 url: 'http://localhost:8080/dog/registration',
@@ -48,13 +49,16 @@ $.get("/dog" + window.location.pathname).done(dogJson => {
                     $('#dogSize').html(dog.size);
                     $('#dogDescription').html(dog.description.replace(/\n/g, '<br>'))
                     $('#formDogModal').modal('hide')
+                    $('#form_1').removeClass('hide')
+                    $('#form_2').addClass('hide')
+                    $('#form_3').addClass('hide')
                 },
                 error: function (data) {
                     console.log("error");
                     console.log(data);
                 }
             });
-        }
+        //}
     });
 });
 

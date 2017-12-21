@@ -36,10 +36,12 @@ router.get('/mydogs', (req, res) => {
     })
 })
 
-router.get('/reg', (req, res) => {
-
-    res.render('form')
-})
+// Get dogs of particulor owner on public page
+router.get('/user/:userID', (req, res) => {
+    Dog.find({ownerID: req.params.userID}).then(dogs => {
+        res.send(dogs);
+    })
+});
 
 // Post a dog registration
 router.post('/registration', function (req, res) {
@@ -79,7 +81,9 @@ router.post('/registration', function (req, res) {
 router.delete('/registration', (req, res) => {
     Dog.findOneAndRemove({ _id: req.body.dog_id })
         .then(() => {
-            res.send('Removed')
+            User.findOneAndUpdate({_id: req.user._id}, {$pull: {dogIDs: req.body.dog_id}}).then(()=>{
+                res.send('Removed');
+            })
         })
 })
 

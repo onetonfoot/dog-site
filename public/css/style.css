@@ -305,6 +305,14 @@
     height: 100%;
 }
 
+.review-table {
+    width: 100%;
+}
+
+#reviewCarousel .carousel-item {
+    max-width: 500px;
+}
+
 .review-table td{
     padding: 10px 30px 0 0;
 }
@@ -411,7 +419,12 @@
 }
 
 .dogInfo td {
-    padding: 5px 30px 5px 0;
+    min-width: 70px;
+    padding: 5px 20px 5px 0;
+}
+
+.dogInfo td:nth-child(2n) {
+    padding-right: 50px;
 }
 
 #dogBreed,
@@ -422,6 +435,10 @@
     font-weight: 500;
 }
 
+#dogOwner span {
+    margin-right: 10px;
+}
+
 #dogOwner a {
     display: inline-block;
     width: 50px;
@@ -429,8 +446,7 @@
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    vertical-align: middle;
-    margin: 0 10px;
+    vertical-align: text-top;
     border: 0;
 }
 
