@@ -30,7 +30,6 @@
 <script>
     $(function () {
 
-        console.log(`{{dogJson._id}}`);
 
         // Make dog carousel
         function renderDogCarousel(dogJson) {
@@ -98,6 +97,7 @@
                         <h5>Manage your dog</h5>
                         <i class="fa fa-pencil fa-2x" data-toggle="modal" data-target="#formDogModal" aria-hidden="true"></i>
                         <i class="fa fa-trash fa-2x" data-toggle="modal" data-target="#removeDogModal" aria-hidden="true"></i>
+                        <i id="message-btn" class="ownerID-${dogJson.ownerID} fa fa-envelope fa-2x" target="_blank" aria-hidden="true"></i>
                     </div>
                 </div>`);
 
@@ -120,6 +120,23 @@
                 }).done(()=>{
                     window.location.replace("http://localhost:8080/");
                 });
+            })
+
+            $("#message-btn").click(function(){
+                let classes = $("#message-btn").attr("class")
+                let myRegexp = /ownerID-([^\s]*)/g;
+                let ownerID = myRegexp.exec(classes)[1];
+
+                $.ajax({
+                    type:"POST",
+                    url:"/chat/inbox",
+                    contentType: "application/json",
+                    data: JSON.stringify({ ownerID: ownerID})
+                }).done(()=>{
+
+                    window.location.replace("http://localhost:8080/chat/inbox")
+                    {{!-- window.location.replace("http://localhost:8080/chat/inbox#"+ownerID) --}}
+                })
             })
         })
 

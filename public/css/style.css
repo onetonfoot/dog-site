@@ -269,7 +269,8 @@
 
 .fa-pencil,
 .fa-plus,
-.fa-trash {
+.fa-trash,
+#message-btn {
     color: #AAA;
     cursor: pointer;
     margin-right: 20px;
@@ -277,7 +278,8 @@
 
 .fa-pencil:hover,
 .fa-plus:hover,
-.fa-trash:hover {
+.fa-trash:hover,
+#message-btn:hover {
     color: orange;
 }
 
@@ -286,6 +288,7 @@
     border: 1px solid rgba(0,0,0,.125); 
     margin-bottom: 15px; 
     border-radius: 5px; 
+    overflow: auto;
 } 
 
 .review-pic-container {
@@ -409,4 +412,13 @@
 
 .dogInfo td {
     padding: 5px 30px 5px 0;
+}
+
+.chat-msg {
+
+
+}
+
+.blue {
+    color: blue;
 }

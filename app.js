@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const passport = require('passport');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
 
 const keys = require('./config/keys');
 const flash = require('connect-flash');
@@ -18,6 +19,8 @@ require('./chat/socket')(io)
 app.engine('handlebars', exphbs({defaultLayout: 'index'}));
 app.set('view engine', 'handlebars');
 
+//Json parser
+app.use( bodyParser.json() );
 //set public dir
 app.use(express.static('public'))
 

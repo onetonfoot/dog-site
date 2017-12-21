@@ -1,43 +1,111 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script> 
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script> 
- 
-<div class="container "> 
-    <div class="row mt-5 "> 
-        <div class="col-sm-4"> 
-            <ul class="list-group"> 
-                <li class="user list-group-item d-flex justify-content-between align-items-center"> 
-                    Shawn 
-                    <span class="badge badge-primary badge-pill">1</span> 
-                </li> 
-                <li class="user list-group-item d-flex justify-content-between align-items-center"> 
-                    Justin 
-                    <span class="badge badge-primary badge-pill">2</span> 
-                </li> 
-                <li class="user list-group-item d-flex justify-content-between align-items-center"> 
-                    Dom 
-                    <span class="badge badge-primary badge-pill">1</span> 
-                </li> 
-            </ul> 
-        </div> 
-        <div class="col-sm-8"> 
-            <div class="chatbox"> 
- 
-            </div> 
-            <form> 
-                <div class="form-group"> 
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> 
-                </div> 
-            </form> 
-        </div> 
-    </div> 
-</div> 
- 
-<script> 
- 
-$(function(){ 
- 
-    var socket = io(); 
- 
-}) 
- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<div class="container ">
+    <div class="row mt-5 ">
+        <div class="col-sm-4">
+            <ul id="user-list" class="list-group">
+                {{#each allChats}}
+                <li class="receiver-{{this.receiverID}} user list-group-item d-flex justify-content-between align-items-center">
+                    {{this.receiverName}}
+                </li>
+                {{/each}}
+                {{!-- <li class="user list-group-item d-flex justify-content-between align-items-center">
+                    Justin
+                </li> --}}
+            </ul>
+        </div>
+        <div class="col-sm-8">
+            <div class="chatbox">
+                <ul id="chat-list" class="list-group">
+                </ul>
+            </div>
+            <form>
+                <div class="form-group">
+                    <textarea class="form-control" id="messageBox" rows="3"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+        var socket = io();
+
+        //Sending a message
+        $('#messageBox').bind("enterKey", function (e) {
+
+            let text = $(this).val()
+            let classes = $("#user-list li.active").attr("class")
+            //Get id with regex
+            let myRegexp = /receiver-([^\s]*)/g;
+            let receiverID = myRegexp.exec(classes)[1];
+            socket.emit('message', {
+                receiverID: receiverID,
+                text: text
+            })
+            $(this).val("")
+        });
+
+        $('#messageBox').keydown(function (e) {
+            if (e.keyCode == 13) {
+                $(this).trigger("enterKey");
+            }
+        });
+
+
+        $('#user-list li').first().addClass("active")
+
+        $('#user-list li').click(function () {
+
+            $("#user-list li").removeClass("active")
+            $(this).addClass("active")
+
+        })
+
+        $.get("/chat/history", function (res) {
+
+            let classes = $("#user-list li.active").attr("class")
+            let myRegexp = /receiver-([^\s]*)/g;
+            let receiverID = myRegexp.exec(classes)[1];
+
+            for (chat of res) {
+                if (chat.receiverID == receiverID) {
+                    console.log(chat.messages)
+                    for (msg of chat.messages) {
+                        $("#chat-list").append(
+                            `<li class="user list-group-item d-flex justify-content-between align-items-center"> 
+                                            ${msg.text} 
+                                         </li>`)
+                    }
+                }
+            }
+        })
+
+
+
+        socket.on('chat message', function (data) {
+            console.log(data)
+
+            let classes = $("#user-list li.active").attr("class")
+            //Get id with regex
+            let myRegexp = /receiver-([^\s]*)/g;
+            let receiverID = myRegexp.exec(classes)[1];
+
+            let colour = ""
+
+            if (data.receiverID == receiverID){
+                colour = "blue"
+            }
+
+
+            $("#chat-list").append(
+                `<li class="user list-group-item ${colour} d-flex justify-content-between align-items-center"> 
+                    ${data.text} 
+                 </li>`)
+
+        });
+    });
 </script>
