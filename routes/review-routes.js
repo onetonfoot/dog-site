@@ -1,6 +1,7 @@
 const router = require('./auth-routes');
 const Review = require('../models/review-model');
 const Dog = require('../models/dog-model');
+const User = require('../models/user-model');
 const bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: false }));

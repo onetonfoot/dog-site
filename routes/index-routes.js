@@ -12,9 +12,17 @@ router.get('/profile',(req,res)=>{
 })
 
 
-router.get('/:dogID',(req,res)=>{
+router.get('/:dogID', (req,res)=>{
     Dog.findOne({_id: req.params.dogID}).then( (dog)=>{
-        res.render('dog-page')
+        if (typeof req.user === "undefined") {
+            res.render('dog-page-public');
+        } else {
+            if (req.user._id == dog.ownerID) {
+                res.render('dog-page',{loggedIn: req.isAuthenticated()});
+            } else {
+                res.render('dog-page-public-loggedin',{loggedIn: req.isAuthenticated()});
+            }
+        }
     })
 })
 

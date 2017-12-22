@@ -8,19 +8,21 @@
     border-bottom: solid 2px black;
 }
 
+.navbar-brand img{
+    height: 50px;
+    margin-top: 5px;
+}
 
 /* Filter Bar */
 
 .filter-bar {
-    height: 60px;
     width: 100vw;
     display: flex;
     flex-direction: row;
-    padding: 10px 30px;
+    padding: 10px 15px 0 15px;
 }
 
 #form-menu {
-    padding: 10px;
     min-height: 400px;
 }
 
@@ -306,6 +308,14 @@
     height: 100%;
 }
 
+.review-table {
+    width: 100%;
+}
+
+#reviewCarousel .carousel-item {
+    max-width: 500px;
+}
+
 .review-table td{
     padding: 10px 30px 0 0;
 }
@@ -392,6 +402,7 @@
     overflow: hidden;
     border: 1px solid #CCC;
     padding: 0;
+    margin-bottom: 30px;
 }
 
 .thumbnail img {
@@ -411,14 +422,78 @@
 }
 
 .dogInfo td {
-    padding: 5px 30px 5px 0;
+    min-width: 70px;
+    padding: 5px 20px 5px 0;
 }
 
-.chat-msg {
+.dogInfo td:nth-child(2n) {
+    padding-right: 50px;
+}
 
+#dogBreed,
+#dogSex,
+#dogAge,
+#dogSize,
+#dogOwner {
+    font-weight: 500;
+}
 
+#dogOwner span {
+    margin-right: 10px;
+}
+
+#dogOwner a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    vertical-align: text-top;
+    border: 0;
+}
+
+#dogOwner button:focus {
+    outline: none;
+}
+
+#dogOwner img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+}
+
+#postReview textarea {
+    max-width: 500px;
+}
+
+.dog_rating button {
+    position: relative;
+    background: none;
+    border: 0;
+}
+
+.dog_rating button:focus {
+    outline: none;
+}
+
+.dog_rating input {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    left: 0;
 }
 
 .blue {
     color: blue;
+}
+
+.checkmark {
+    top: 0;
+    left: 0;
 }

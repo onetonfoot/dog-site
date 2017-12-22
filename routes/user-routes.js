@@ -18,7 +18,7 @@ router.get('/profile', (req, res) => {
 // Get the view of a user public page render
 router.get('/:userID', (req, res) => {
     User.findOne({_id: req.params.userID}, {_id: 1, username: 1, dogIDs: 1, reviews: 1, photos: 1, description: 1}).then(user => {
-        res.render('profile-public', {user})
+        res.render('profile-public', {loggedIn: req.isAuthenticated(), user})
     }).catch(() => {
         res.send('User not found')
     });

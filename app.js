@@ -60,12 +60,14 @@ const indexRoutes = require('./routes/index-routes');
 const dogRoutes = require('./routes/dog-routes');
 const chatRoutes = require('./routes/chat-routes');
 const userRoutes = require('./routes/user-routes');
+const reviewRoutes = require('./routes/review-routes')
 
 app.use('/auth', authRoutes);
 app.use('/',indexRoutes);
 app.use('/dog', dogRoutes);
 app.use('/chat', chatRoutes);
 app.use('/user', userRoutes);
+app.use('/review', reviewRoutes);
 
 http.listen(8080, () => {
     console.log('app now listening for requests on port 8080');
