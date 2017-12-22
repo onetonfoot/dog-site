@@ -1,0 +1,165 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-5 dogPhotos pl-4 pr-4"></div>
+        <div class="col-sm-7 dogInfo mb-4 pl-4 pr-4">
+            <h1 id="dogName"></h1>
+            <table class="mt-4">
+                <tbody>
+                    <tr>
+                        <td valign="top">Breed</td>
+                        <td id="dogBreed" valign="top"></td>
+                        <td valign="top">Size</td>
+                        <td id="dogSize" valign="top"></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">Sex</td>
+                        <td id="dogSex" valign="top"></td>
+                        <td valign="top">Age</td>
+                        <td id="dogAge" valign="top"></td>      
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td valign="top">Rating</td>
+                        <td id="dogRating" valign="top">
+                            <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                            <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                            <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                            <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                            <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">Owner</td>
+                        <td id="dogOwner" valign="top">
+                            <span></span>
+                            <a>
+                                <img alt="owner picture">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-sm-5 mb-4 pl-4 pr-4">
+            <h3>Description</h3>
+            <p id="dogDescription"></p>
+        </div>
+        <div class="col-sm-7 pl-4 pr-4">
+            <h3>Reviews</h3>
+            <div id="reviewCarousel" class="carousel slide" data-interval="false" data-wrap="false">
+                <div class="carousel-inner">
+                </div>
+            </div>
+            <div class="mt-3 mb-5">
+                <span id="review-more-num-group"></span>
+            </div>
+
+            <form id="postReview" class="mb-5">
+                <h5>Post a review</h5>
+                <div class="dog_rating">
+                    <button>
+                        <input type="radio" name="star" value="1">
+                        <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                    </button>
+                    <button>
+                        <input type="radio" name="star" value="2">
+                        <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                    </button>
+                    <button>
+                        <input type="radio" checked="checked" name="star" value="3">
+                        <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                    </button>
+                    <button>
+                        <input type="radio" name="star" value="4">
+                        <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                    </button>
+                    <button>
+                        <input type="radio" name="star" value="5">
+                        <i class="fa fa-star checkmark" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <textarea class="form-control" name="dog_review" rows="3"></textarea>
+                <input type="submit" value="Submit" class="btn btn-primary mt-3">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/renderReview.js"></script>
+<script src="/js/renderDogCarousel.js"></script>
+<script src="/js/message-btn.js"></script>
+<script>
+    $(function () {
+
+        // Get dog information
+        $.get("/dog" + window.location.pathname).done(dogJson => {
+            $('.dogPhotos').html(renderDogCarousel(dogJson));
+            $('#dogName').html(dogJson.name);
+            $('#dogBreed').html(dogJson.breed);
+            $('#dogSex').html(dogJson.sex);
+            $('#dogAge').html(dogJson.age);
+            $('#dogSize').html(dogJson.size);
+            $('#dogOwner span').html(dogJson.ownerName);
+            $('#dogOwner img').attr({ src: dogJson.ownerPhoto[0] });
+            $('#dogOwner a').attr({
+                href: "/user/" + dogJson.ownerID,
+                target: "_blank"
+            });
+            $('#dogDescription').html(dogJson.description.replace(/\n/g, '<br>'));
+        })
+
+        // Change star color on click
+        const starColor = (num) => {
+            $('.dog_rating button:nth-child(' + num + ')').click(() => {
+                for (let x = 1; x <= num; x++) {
+                    $('.dog_rating button:nth-child(' + x + ')').css({
+                        color: 'rgb(232, 232, 0)'
+                    })
+                }
+                for (let y = num + 1; y <= 5; y++) {
+                    $('.dog_rating button:nth-child(' + y + ')').css({
+                        color: 'inherit'
+                    })
+                }
+            });
+        };
+
+        starColor(1);
+        starColor(2);
+        starColor(3);
+        starColor(4);
+        starColor(5);
+
+        // Default star rating at 3
+        for (let x = 1; x <= 3; x++) {
+            $('.dog_rating button:nth-child(' + x + ')').css({
+                color: 'rgb(232, 232, 0)'
+            })
+        }
+
+        // Get review and render
+        renderReview()
+
+        // Post review
+        $('#postReview').submit(event => {
+            event.preventDefault();
+            $.post('/review' + window.location.pathname, {
+                rating: $('#postReview input[name="star"]:checked').val(),
+                text: $('#postReview textarea').val()
+            }).done(() => {
+                $('#reviewCarousel .carousel-inner').html('')
+                $('#review-more-num-group').html('');
+                $('.review-more-prev').remove();
+                $('.review-more-next').remove();
+                renderReview()         
+            })
+        });
+    }) 
+</script>
+
+<script src="/js/updateDog.js"></script>
