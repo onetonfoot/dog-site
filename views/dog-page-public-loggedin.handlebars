@@ -38,6 +38,7 @@
                             <a>
                                 <img alt="owner picture">
                             </a>
+                            <i id="message-btn" class="fa fa-envelope fa-2x" target="_blank" aria-hidden="true"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -99,6 +100,7 @@
         // Get dog information
         $.get("/dog" + window.location.pathname).done(dogJson => {
             $('.dogPhotos').html(renderDogCarousel(dogJson));
+            $('#message-btn').addClass(`ownerID-${dogJson.ownerID}`)
             $('#dogName').html(dogJson.name);
             $('#dogBreed').html(dogJson.breed);
             $('#dogSex').html(dogJson.sex);
