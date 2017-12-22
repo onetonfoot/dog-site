@@ -9,7 +9,7 @@ router.get('/inbox',router.authCheck , (req,res)=>{
 
     Chat.find().then( allChats =>{
         console.log(allChats)
-        res.render('inbox',{allChats:allChats})
+        res.render('inbox',{loggedIn: req.isAuthenticated(), allChats:allChats})
     })
 
 })
